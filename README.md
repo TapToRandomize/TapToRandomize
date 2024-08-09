@@ -2,7 +2,9 @@ TapToRandomize is a simple script to automize randomizer usage on MiSTerFPGA, be
 
 Usage: randomizerlauncher.sh randomizername
 
-In TapTo, make a card with **mister.script:randomizerlauncher.sh randomizername autolaunch?hidden=true
+Without TapTo, just open the script in the scripts menu, if you can view interactive scripts; it'll give you a list of randomizers, just select the one you want.
+
+In TapTo, make a card with **mister.script:randomizerlauncher.sh randomizername autoload (in the near future add ?hidden=true to the end of it to surpress the display output for truly smooth operation).
 
 Upon tapping that card, after a wait (note some waits can be sizeable, SMZ3 can take up to 4 minutes to launch!) your randomized ROM will start up. You get a freshly randomized ROM any time you tap the card; to save a session for later, open the ROM in the RandoDir/current directory via the normal MiSTerFPGA menus, or make a card with a launch command targeting your RandoDir/current directory (I suggest having this card premade if you're in the habit of playing a single seed over multiple sessions).
 
