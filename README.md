@@ -54,11 +54,11 @@ yugioh06 (GBA Yu Gi Oh Ultimate Master 2006)
 
 zillion (SMS Zillion)
 
-From cleartonic:
+( From cleartonic: https://github.com/cleartonic/dq3hf )
 
 dq3 (SNES Dragon Quest 3 Heavenly Flight (works with English patch or JP rom))
 
-From calm-palm:
+( From calm-palm: https://github.com/calm-palm/cotm-randomizer/ )
 
 cotm (GBA Castlevania Circle of the Moon (calm-palm, preliminary, only default options))
 
