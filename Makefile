@@ -12,4 +12,4 @@ taptorandomize:
 	cp -R vendor/cotm-randomizer build/TapToRandomize/randomizers/cotm-randomizer
 	cp -R vendor/ArchipelagoMiSTer/build/exe.* build/TapToRandomize/randomizers/archipelago-0.5.0-MiSTerFPGA
 	cp mbc/mbc build/TapToRandomize
-	cd build && zip TapToRandomize-0.1.2.zip TapToRandomize/
+	cd build && zip TapToRandomize-0.2.1.zip TapToRandomize/
