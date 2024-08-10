@@ -1,9 +1,9 @@
 [submodule "randomizers/dq3hf"]
-	path = randomizers/dq3hf
+	path = vendor/dq3hf
 	url = https://github.com/akerasi/dq3hf.git
 [submodule "randomizers/ArchipelagoMiSTer"]
 	path = vendor/ArchipelagoMiSTer
 	url = https://github.com/akerasi/ArchipelagoMiSTer.git
 [submodule "randomizers/cotm-randomizer"]
-	path = randomizers/cotm-randomizer
+	path = vendor/cotm-randomizer
 	url = https://github.com/akerasi/cotm-randomizer.git
