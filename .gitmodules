@@ -1,6 +1,3 @@
-[submodule "randomizers/asar"]
-	path = randomizers/asar
-	url = https://github.com/RPGHacker/asar.git
 [submodule "randomizers/dq3hf"]
 	path = randomizers/dq3hf
 	url = https://github.com/akerasi/dq3hf.git
