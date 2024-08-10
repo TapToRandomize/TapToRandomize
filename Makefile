@@ -1,3 +1,5 @@
+all: dq3hf cotm-randomizer archipelago-mister mbc taptorandomize
+
 dq3hf:
 	cd vendor/dq3hf && make
 cotm-randomizer:
@@ -13,3 +15,9 @@ taptorandomize:
 	cp -R vendor/ArchipelagoMiSTer/build/exe.* build/TapToRandomize/randomizers/archipelago-0.5.0-MiSTerFPGA
 	cp mbc/mbc build/TapToRandomize
 	cd build && zip TapToRandomize-0.2.1.zip TapToRandomize/
+clean:
+	cd vendor/dq3hf && make clean
+	cd vendor/cotm-randomizer && make clean
+	rm -Rf vendor/ArchipelagoMiSTer/build
+	rm -f vendor/mbc/mbc
+	rm -Rf build
