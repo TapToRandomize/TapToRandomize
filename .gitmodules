@@ -1,0 +1,12 @@
+[submodule "randomizers/asar"]
+	path = randomizers/asar
+	url = https://github.com/RPGHacker/asar.git
+[submodule "randomizers/dq3hf"]
+	path = randomizers/dq3hf
+	url = https://github.com/akerasi/dq3hf.git
+[submodule "randomizers/ArchipelagoMiSTer"]
+	path = randomizers/ArchipelagoMiSTer
+	url = https://github.com/akerasi/ArchipelagoMiSTer.git
+[submodule "randomizers/cotm-randomizer"]
+	path = randomizers/cotm-randomizer
+	url = https://github.com/akerasi/cotm-randomizer.git
