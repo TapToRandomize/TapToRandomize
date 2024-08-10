@@ -7,3 +7,6 @@
 [submodule "randomizers/cotm-randomizer"]
 	path = vendor/cotm-randomizer
 	url = https://github.com/akerasi/cotm-randomizer.git
+[submodule "vendor/mbc"]
+	path = vendor/mbc
+	url = https://github.com/pocomane/MiSTer_Batch_Control.git
