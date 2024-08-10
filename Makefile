@@ -5,7 +5,7 @@ dq3hf:
 cotm-randomizer:
 	cd vendor/cotm-randomizer/Program && make
 archipelago-mister:
-	cd vendor/ArchipelagoMiSTer/ && python -m venv .venv && source .venv/bin/activate && setup.py build -y
+	cd vendor/ArchipelagoMiSTer/ && python -m venv .venv && source .venv/bin/activate && python setup.py build -y
 mbc:
 	cd vendor/mbc && cc -static -o mbc mbc.c
 taptorandomize:
