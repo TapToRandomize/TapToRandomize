@@ -1,5 +1,7 @@
 TapToRandomize is a simple script to automize randomizer usage on MiSTerFPGA, best utilized alongside TapTo (https://github.com/TapToCommunity/tapto)
 
+Build instructions are under Build.md, but if you're not a developer, you're better off just downloading the release.
+
 Usage: randomizerlauncher.sh randomizername
 
 Without TapTo, just open the script in the scripts menu, if you can view interactive scripts; it'll give you a list of randomizers, just select the one you want.
@@ -62,10 +64,11 @@ dq3 (SNES Dragon Quest 3 Heavenly Flight (works with English patch or JP rom))
 
 cotm (GBA Castlevania Circle of the Moon)
 
-Version: 0.1.6
+Version: 0.2.1
 Author: akerasi (Allen Tipper)
 
 CHANGELOG:
+0.2.1: Refactored such that a proper build system is in place for everything, and added a proper build system. Also cut out more of Archipelago that we don't need, so builds are much smaller.
 
 0.1.6: Added Circle of the Moon https://github.com/calm-palm/cotm-randomizer/
 

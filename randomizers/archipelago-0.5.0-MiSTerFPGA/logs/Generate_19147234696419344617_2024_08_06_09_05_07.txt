@@ -1,8 +1,0 @@
-﻿[root at 2024-08-06 09:05:07,769]: Archipelago (0.5.0) logging initialized on Linux-6.1.21-v7+-armv7l-with-glibc2.31 running Python 3.9.6 (frozen)
-[root at 2024-08-06 09:05:07,772]: Uncaught exception
-Traceback (most recent call last):
-  File "__startup__.py", line 141, in run
-  File "console.py", line 25, in run
-  File "Generate.py", line 549, in <module>
-  File "Generate.py", line 134, in main
-ValueError: No individual player files found and number of players is 0. Provide individual player files or specify the number of players via host.yaml or --multi.
