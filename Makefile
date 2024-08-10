@@ -3,7 +3,7 @@ all: dq3hf cotm-randomizer archipelago-mister mbc taptorandomize
 dq3hf:
 	cd vendor/dq3hf && make
 cotm-randomizer:
-	cd vendor/cotm-randomizer && make
+	cd vendor/cotm-randomizer/Program && make
 archipelago-mister:
 	cd vendor/ArchipelagoMiSTer/ && python -m venv .venv && source .venv/bin/activate && setup.py build -y
 mbc:
@@ -17,7 +17,7 @@ taptorandomize:
 	cd build && zip TapToRandomize-0.2.1.zip TapToRandomize/
 clean:
 	cd vendor/dq3hf && make clean
-	cd vendor/cotm-randomizer && make clean
+	cd vendor/cotm-randomizer/Program && make clean
 	rm -Rf vendor/ArchipelagoMiSTer/build
 	rm -f vendor/mbc/mbc
 	rm -Rf build
