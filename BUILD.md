@@ -23,11 +23,17 @@ git clone https://github.com/akerasi/TapToRandomize.git
 Now, get into that directory, and update your submodules:
 
 cd TapToRandomize
+
 git submodule init
+
 git submodule update
+
 cd vendor/dqh3
+
 git submodule init
+
 git submodule update
+
 cd ../../
 
 Yes, one of our submodules has a submodule, so we needed to init that too. Now that all that's done... it's just make:
