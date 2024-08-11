@@ -46,9 +46,6 @@
 [submodule "vendor/LADXR"]
 	path = vendor/LADXR
 	url = https://github.com/daid/LADXR.git
-[submodule "vendor/oracles-randomizer"]
-	path = vendor/oracles-randomizer
-	url = https://github.com/jangler/oracles-randomizer.git
 [submodule "vendor/zilliandomizer"]
 	path = vendor/zilliandomizer
 	url = https://github.com/beauxq/zilliandomizer.git
