@@ -13,9 +13,6 @@
 [submodule "vendor/actraiser-randomizer"]
 	path = vendor/actraiser-randomizer
 	url = https://github.com/Osteoclave/actraiser-randomizer.git
-[submodule "vendor/MOTHER-3-Randomizer"]
-	path = vendor/MOTHER-3-Randomizer
-	url = https://github.com/Lorenzooone/MOTHER-3-Randomizer.git
 [submodule "vendor/ffr-hmsj"]
 	path = vendor/ffr-hmsj
 	url = https://github.com/hmsjayne/ffr-hmsj.git
