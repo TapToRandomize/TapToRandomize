@@ -19,9 +19,6 @@
 [submodule "vendor/ffr-hmsj"]
 	path = vendor/ffr-hmsj
 	url = https://github.com/hmsjayne/ffr-hmsj.git
-[submodule "vendor/FF6BeyondChaosRandomizer"]
-	path = vendor/FF6BeyondChaosRandomizer
-	url = https://github.com/FF6BeyondChaos/BeyondChaosRandomizer.git
 [submodule "vendor/GS-Randomizer"]
 	path = vendor/GS-Randomizer
 	url = https://github.com/Valyssa/GS-Randomizer.git
