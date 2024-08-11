@@ -67,9 +67,6 @@
 [submodule "vendor/mn64rando"]
 	path = vendor/mn64rando
 	url = https://github.com/abyssonym/mn64rando.git
-[submodule "vendor/ff6beyondchaos_gaiden"]
-	path = vendor/ff6beyondchaos_gaiden
-	url = https://github.com/abyssonym/beyondchaos_gaiden.git
 [submodule "vendor/fftrctcr"]
 	path = vendor/fftrctcr
 	url = https://github.com/abyssonym/fftrctcr.git
