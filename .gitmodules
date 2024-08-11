@@ -10,3 +10,72 @@
 [submodule "vendor/mbc"]
 	path = vendor/mbc
 	url = https://github.com/pocomane/MiSTer_Batch_Control.git
+[submodule "vendor/actraiser-randomizer"]
+	path = vendor/actraiser-randomizer
+	url = https://github.com/Osteoclave/actraiser-randomizer.git
+[submodule "vendor/MOTHER-3-Randomizer"]
+	path = vendor/MOTHER-3-Randomizer
+	url = https://github.com/Lorenzooone/MOTHER-3-Randomizer.git
+[submodule "vendor/ffr-hmsj"]
+	path = vendor/ffr-hmsj
+	url = https://github.com/hmsjayne/ffr-hmsj.git
+[submodule "vendor/FF6BeyondChaosRandomizer"]
+	path = vendor/FF6BeyondChaosRandomizer
+	url = https://github.com/FF6BeyondChaos/BeyondChaosRandomizer.git
+[submodule "vendor/GS-Randomizer"]
+	path = vendor/GS-Randomizer
+	url = https://github.com/Valyssa/GS-Randomizer.git
+[submodule "vendor/randstalker"]
+	path = vendor/randstalker
+	url = https://github.com/Dinopony/randstalker.git
+[submodule "vendor/PMR-SeedGenerator"]
+	path = vendor/PMR-SeedGenerator
+	url = https://github.com/icebound777/PMR-SeedGenerator.git
+[submodule "vendor/MegamanRandomizer"]
+	path = vendor/MegamanRandomizer
+	url = https://github.com/avvie/MegamanRandomizer.git
+[submodule "vendor/mg-random"]
+	path = vendor/mg-random
+	url = https://github.com/wijnen/mg-random.git
+[submodule "vendor/neutopia"]
+	path = vendor/neutopia
+	url = https://github.com/konkers/neutopia.git
+[submodule "vendor/FFLRandomizer"]
+	path = vendor/FFLRandomizer
+	url = https://github.com/eclipseyy/FFLRandomizer.git
+[submodule "vendor/shadowrun-randomizer"]
+	path = vendor/shadowrun-randomizer
+	url = https://github.com/Osteoclave/shadowrun-randomizer.git
+[submodule "vendor/zelda-randomizer"]
+	path = vendor/zelda-randomizer
+	url = https://github.com/tetraly/zelda-randomizer.git
+[submodule "vendor/ALttPDoorRandomizer"]
+	path = vendor/ALttPDoorRandomizer
+	url = https://github.com/aerinon/ALttPDoorRandomizer.git
+[submodule "vendor/LADXR"]
+	path = vendor/LADXR
+	url = https://github.com/daid/LADXR.git
+[submodule "vendor/oracles-randomizer"]
+	path = vendor/oracles-randomizer
+	url = https://github.com/jangler/oracles-randomizer.git
+[submodule "vendor/zilliandomizer"]
+	path = vendor/zilliandomizer
+	url = https://github.com/beauxq/zilliandomizer.git
+[submodule "vendor/ffl2mp"]
+	path = vendor/ffl2mp
+	url = https://github.com/abyssonym/mighty_power.git
+[submodule "vendor/mn64rando"]
+	path = vendor/mn64rando
+	url = https://github.com/abyssonym/mn64rando.git
+[submodule "vendor/ff6beyondchaos_gaiden"]
+	path = vendor/ff6beyondchaos_gaiden
+	url = https://github.com/abyssonym/beyondchaos_gaiden.git
+[submodule "vendor/fftrctcr"]
+	path = vendor/fftrctcr
+	url = https://github.com/abyssonym/fftrctcr.git
+[submodule "vendor/bof3_vast_violence"]
+	path = vendor/bof3_vast_violence
+	url = https://github.com/abyssonym/vast_violence.git
+[submodule "vendor/Crazy-Castle-Randomizer"]
+	path = vendor/Crazy-Castle-Randomizer
+	url = https://github.com/MaximumLance/Crazy-Castle-Randomizer.git
