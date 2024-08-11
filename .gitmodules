@@ -22,9 +22,6 @@
 [submodule "vendor/randstalker"]
 	path = vendor/randstalker
 	url = https://github.com/Dinopony/randstalker.git
-[submodule "vendor/PMR-SeedGenerator"]
-	path = vendor/PMR-SeedGenerator
-	url = https://github.com/icebound777/PMR-SeedGenerator.git
 [submodule "vendor/MegamanRandomizer"]
 	path = vendor/MegamanRandomizer
 	url = https://github.com/avvie/MegamanRandomizer.git
