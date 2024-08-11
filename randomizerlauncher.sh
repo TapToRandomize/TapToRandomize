@@ -152,14 +152,20 @@ build_options_flags_sj(){
         fi
         echo "$SJOptionsString"
 }
+setupPythonEnv(){
+        python -m ensurepip
+        python -m pip install venv
+        if [ ! -e .venv$EnvIdentifier/bin/activate ]; then
+            python -m venv .venv$EnvIdentifier
+        fi
+        . .venv$EnvIdentifier/bin/activate
+}
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
         shift_old_seeds
-        if [ ! -e .venvsj/bin/activate ]; then
-            python -m venv .venvsj
-        fi
-        source .venvsj/bin/activate
-        pip install sj-rando
+        EnvIdentifier="sj"
+        setupPythonEnv
+        python -m pip install sj-rando
         build_options_flags_sj
         sj-rando $SJOptionsString --rompath "${SolarJetmanRom}"
         deactivate
