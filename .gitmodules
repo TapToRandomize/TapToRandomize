@@ -76,6 +76,3 @@
 [submodule "vendor/bof3_vast_violence"]
 	path = vendor/bof3_vast_violence
 	url = https://github.com/abyssonym/vast_violence.git
-[submodule "vendor/Crazy-Castle-Randomizer"]
-	path = vendor/Crazy-Castle-Randomizer
-	url = https://github.com/MaximumLance/Crazy-Castle-Randomizer.git
