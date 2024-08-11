@@ -14,6 +14,9 @@ taptorandomize:
 	cp -R vendor/cotm-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/ArchipelagoMiSTer/build/exe.* build/TapToRandomize/randomizers/
 	mv build/TapToRandomize/randomizers/exe.* build/TapToRandomize/archipelago-0.5.0-MiSTerFPGA
+	cp -R vendor/actraiser-randomizer build/TapToRandomize/randomizers/
+	cp -R vendor/ALttPDoorRandomizer build/TapToRandomize/randomizers/
+	cp -R vendor/bof3_vast_violence build/TapToRandomize/randomizers/
 	cp vendor/mbc/mbc build/TapToRandomize
 	cd build && zip -r TapToRandomize-0.2.1.zip TapToRandomize/
 clean:
