@@ -31,9 +31,6 @@
 [submodule "vendor/mg-random"]
 	path = vendor/mg-random
 	url = https://github.com/wijnen/mg-random.git
-[submodule "vendor/neutopia"]
-	path = vendor/neutopia
-	url = https://github.com/konkers/neutopia.git
 [submodule "vendor/FFLRandomizer"]
 	path = vendor/FFLRandomizer
 	url = https://github.com/eclipseyy/FFLRandomizer.git
