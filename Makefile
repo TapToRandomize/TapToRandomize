@@ -6,6 +6,8 @@ cotm-randomizer:
 	cd vendor/cotm-randomizer/Program && make
 archipelago-mister:
 	cd vendor/ArchipelagoMiSTer/ && python -m venv .venv && . .venv/bin/activate && python setup.py build -y
+randstalker:
+	cd vendor/randstalker/ && sh build_unix.sh
 mbc:
 	cd vendor/mbc && cc -static -o mbc mbc.c
 taptorandomize:
@@ -24,6 +26,8 @@ taptorandomize:
 	cp -R vendor/MegamanRandomizer build/TapToRandomize/randomizers/
 	cp -R vendor/mg-random build/TapToRandomize/randomizers/
 	cp -R vendor/mn64rando build/TapToRandomize/randomizers/
+	cp -R vendor/randstalker/build/ build/TapToRandomize/randomizers/
+	mv build/TapToRandomize/randomizers/build build/TapToRandomize/randomizers/randstalker
 	cp -R vendor/shadowrun-rando build/TapToRandomize/randomizers/
 	cp -R vendor/zelda-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/zilliandomizer build/TapToRandomize/randomizers/
