@@ -1,3 +1,5 @@
+![TapToRandomize]assets/TapToRandomize.png?raw=true "TapToRandomize")
+
 TapToRandomize is a simple script to automize randomizer usage on MiSTerFPGA, best utilized alongside TapTo (https://github.com/TapToCommunity/tapto)
 
 Build instructions are under Build.md, but if you're not a developer, you're better off just downloading the release.
@@ -14,7 +16,7 @@ RandoDir for each randomizer is defined in the script or in a .ini file. It's se
 
 A default ini file is included. You'll almost certainly need to edit it.
 
-Each Archipelago-based randomizer (all of them but Solar Jetman right now) uses a yaml file, located in yamls, for some of its configs. There is a rewriter for these files, at randomizerlauncheryamls.ini, which is a Windows-style ini file rather than a flat Unix one. Sections do matter when editing it. What's in the .ini file will overwrite whatever is in the yamls.You will almost certainly need to edit the rom_path entries in the ini file. I don't recommend editing the .yaml files directly as the .ini will overwrite them, but if you want to, comment out the sections in the ini. Also don't forget to edit host.yaml if you're doing this; the .ini file takes care of that quietly for you, currently.
+Each Archipelago-based randomizer (these have an appended -a at the end of their short names) uses a yaml file, located in yamls, for some of its configs. There is a rewriter for these files, at randomizerlauncheryamls.ini, which is a Windows-style ini file rather than a flat Unix one. Sections do matter when editing it. What's in the .ini file will overwrite whatever is in the yamls.You will almost certainly need to edit the rom_path entries in the ini file. I don't recommend editing the .yaml files directly as the .ini will overwrite them, but if you want to, comment out the sections in the ini. Also don't forget to edit host.yaml if you're doing this; the .ini file takes care of that quietly for you, currently.
 
 Weird config note: for Zillion specifically, your ROM MUST be named as Zillion (UE) [!].sms . It can live in any directory, but the filename MUST match that exactly. This is inherited from Archipelago, which inherited it from zilliandomizer, so nothing I can do to change it unless I want to fix it in zilliandomizer, and that's likely beyond my scope... for now. No other randomizers currently have a restriction like this.
 
@@ -83,6 +85,8 @@ CHANGELOG:
 0.1.1: Initial release.
 
 ACKNOWLEDGEMENTS
+
+AnimeOt4ku for our logo, and quite possibly official templates for TapTo cards in the future.
 
 The Archipelago project, https://github.com/ArchipelagoMW/Archipelago , from which we take many randomizers.
 
