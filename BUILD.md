@@ -1,8 +1,26 @@
 Build Environment: If you're building for MiSTerFPGA and not trying to port this somewhere, it's easiest to build on a Raspberry Pi running 32 bit Raspbian Legacy (the Debian Bullseye version).
 
-First, you'll need build-deps for Python. Easiest way to do that is:
+You'll be manually building a new version of CMake by hand, so you can build randstalker. For that, you'll need cmake build deps. Make sure you've got a deb-src tree in your sources.list (uncomment the line in /etc/apt/sources.list) first.
+
+sudo apt update && sudo apt build-dep cmake
+
+Then make a tmpdir (I call mine ~/build), cd into it, and wget. I used this line:
+
+wget https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2.tar.gz
+
+tar -xvzf cmake-3.30.2.ta.gz
+
+cd CMake-3.30.2
+
+./bootstrap && gmake && sudo gmake install
+
+(this will take a LOOOOOOOOONG time on a Pi 2 like mine. We're talking hours. Really. Might be faster on a newer Pi)
+
+You'll also be building your Python by hand, using pyenv. Start by getting build-deps for Python. Easiest way to do that is:
 
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+
+If we just did build-dep it'd miss some optional things we want.
 
 Next, install pyenv:
 
@@ -24,19 +42,11 @@ Now, get into that directory, and update your submodules:
 
 cd TapToRandomize
 
-git submodule init
+git submodule update --init --recursive
 
-git submodule update
+This'll get all the submodules. There's a lot; this is mostly a repackaging project, after all.
 
-cd vendor/dqh3
-
-git submodule init
-
-git submodule update
-
-cd ../../
-
-Yes, one of our submodules has a submodule, so we needed to init that too. Now that all that's done... it's just make:
+Now that all that's done... it's just make:
 
 make
 
