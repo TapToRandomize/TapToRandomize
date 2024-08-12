@@ -17,6 +17,16 @@ taptorandomize:
 	cp -R vendor/actraiser-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/ALttPDoorRandomizer build/TapToRandomize/randomizers/
 	cp -R vendor/bof3_vast_violence build/TapToRandomize/randomizers/
+	cp -R vendor/ffl2mp build/TapToRandomize/randomizers/
+	cp -R vendor/fftrctcr build/TapToRandomize/randomizers/
+	cp -R vendor/GS-Randomizer build/TapToRandomize/randomizers/
+	cp -R vendor/LADXR build/TapToRandomize/randomizers/
+	cp -R vendor/MegamanRandomizer build/TapToRandomize/randomizers/
+	cp -R vendor/mg-random build/TapToRandomize/randomizers/
+	cp -R vendor/mn64rando build/TapToRandomize/randomizers/
+	cp -R vendor/shadowrun-rando build/TapToRandomize/randomizers/
+	cp -R vendor/zelda-randomizer build/TapToRandomize/randomizers/
+	cp -R vendor/zilliandomizer build/TapToRandomize/randomizers/
 	cp vendor/mbc/mbc build/TapToRandomize
 	cd build && zip -r TapToRandomize-0.2.1.zip TapToRandomize/
 clean:
