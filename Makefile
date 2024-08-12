@@ -1,4 +1,4 @@
-all: dq3hf cotm-randomizer archipelago-mister mbc taptorandomize
+all: dq3hf cotm-randomizer archipelago-mister mbc randstalker taptorandomize
 
 dq3hf:
 	cd vendor/dq3hf && make
