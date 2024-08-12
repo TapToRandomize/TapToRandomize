@@ -5,7 +5,7 @@ Easy way: I've now made a buildscript that should handle all of the environment.
 ```
 git clone https://github.com/TapToRandomize/TapToRandomize.git
 cd TapToRandomize
-bash ./setup_build_environment.sh
+sudo bash ./setup_build_environment.sh
 ```
 
 On a Raspberry Pi 2, this will take something around 6 hours. No that's not a typo. On a Raspberry Pi 4, about 3 hours. Again, not a typo. Why so long? Mostly, compiling cmake and Python 3.9.6 from source.
