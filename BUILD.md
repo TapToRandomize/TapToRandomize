@@ -8,7 +8,7 @@ sudo vim /etc/apt/sources.list
 
 Uncomment the last line in there, then
 
-sudo apt update && sudo apt build-dep cmake
+sudo apt update && sudo apt build-dep cmake -y
 
 Then make a tmpdir (I call mine ~/build), cd into it, and wget. I used this line:
 ```
