@@ -1,4 +1,4 @@
-![TapToRandomize]assets/TapToRandomize.png?raw=true "TapToRandomize")
+![TapToRandomize](assets/TapToRandomize.png?raw=true "TapToRandomize")
 
 TapToRandomize is a simple script to automize randomizer usage on MiSTerFPGA, best utilized alongside TapTo (https://github.com/TapToCommunity/tapto)
 
