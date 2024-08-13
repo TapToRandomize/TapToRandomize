@@ -30,33 +30,33 @@ solarjetman (NES Solar Jetman)
 
 (from Archipelago https://github.com/ArchipelagoMW/Archipelago)
 
-alttp (SNES A Link To The Past)
+alttp-a (SNES A Link To The Past)
 
-dkc3 (SNES Donkey Kong Country 3)
+dkc3-a (SNES Donkey Kong Country 3)
 
-cv64 (N64 Castlevania64)
+cv64-a (N64 Castlevania64)
 
-kdl3 (SNES Kirby's Dream Land 3)
+kdl3-a (SNES Kirby's Dream Land 3)
 
-loz (NES The Legend of Zelda)
+loz-a (NES The Legend of Zelda)
 
-l2 (SNES Lufia 2 Ancient Caves)
+l2-a (SNES Lufia 2 Ancient Caves)
 
-mmbn3 (GBA Mega Man Battle Network 3)
+mmbn3-a (GBA Mega Man Battle Network 3)
 
-pokerb (GB Pokemon Red and Blue)
+pokerb-a (GB Pokemon Red and Blue)
 
-smz3 (SNES Super Metroid and A Link to the Past Combo Randomizer)
+smz3-a (SNES Super Metroid and A Link to the Past Combo Randomizer)
 
-soe (SNES Secret of Evermore)
+soe-a (SNES Secret of Evermore)
 
-sm (SNES Super Metroid)
+sm-a (SNES Super Metroid)
 
-yoshi (SNES Yoshi's Island)
+yoshi-a (SNES Yoshi's Island)
 
-yugioh06 (GBA Yu Gi Oh Ultimate Master 2006)
+yugioh06-a (GBA Yu Gi Oh Ultimate Master 2006)
 
-zillion (SMS Zillion)
+zillion-a (SMS Zillion)
 
 ( From cleartonic: https://github.com/cleartonic/dq3hf )
 
@@ -66,10 +66,16 @@ dq3 (SNES Dragon Quest 3 Heavenly Flight (works with English patch or JP rom))
 
 cotm (GBA Castlevania Circle of the Moon)
 
-Version: 0.2.1
+( From Osteoclave https://github.com/Osteoclave/actraiser-randomizer )
+
+ar (SNES Actraiser)
+
+Version: 0.2.2
 Author: akerasi (Allen Tipper)
 
 CHANGELOG:
+0.2.2: The Great Archipelago Rename, and added many new randomizers that were easy to integrate. Also bugfixes.
+
 0.2.1: Refactored such that a proper build system is in place for everything, and added a proper build system. Also cut out more of Archipelago that we don't need, so builds are much smaller.
 
 0.1.6: Added Circle of the Moon https://github.com/calm-palm/cotm-randomizer/

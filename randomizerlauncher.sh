@@ -217,7 +217,7 @@ solarjetman(){
         mv *.nes "$BaseRandoDir/current"
         SystemForAutolaunch="NES"
 }
-alttp(){
+alttp-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ALTTPRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$ALTTPPlayerDir
@@ -225,7 +225,7 @@ alttp(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-dkc3(){
+dkc3-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$DKC3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$DKC3PlayerDir
@@ -233,7 +233,7 @@ dkc3(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-cv64(){
+cv64-a(){
         BaseRandoDir=$BaseGameDir/$BaseN64Dir/$CV64RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$CV64PlayerDir
@@ -241,7 +241,7 @@ cv64(){
         archipelago_generate 
         SystemForAutolaunch="N64"
 }
-kdl3(){
+kdl3-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$KDL3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$KDL3PlayerDir
@@ -249,7 +249,7 @@ kdl3(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-loz(){
+loz-a(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$LOZRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$LOZPlayerDir
@@ -257,7 +257,7 @@ loz(){
         archipelago_generate 
         SystemForAutolaunch="NES"
 }
-l2(){
+l2-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$L2RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$L2PlayerDir
@@ -265,7 +265,7 @@ l2(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-mmbn3(){
+mmbn3-a(){
         BaseRandoDir=$BaseGameDir/$BaseGBADir/$MMBN3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$MMBN3PlayerDir
@@ -273,7 +273,7 @@ mmbn3(){
         archipelago_generate 
         SystemForAutolaunch="GBA"
 }
-oot(){
+oot-a(){
         BaseRandoDir=$BaseGameDir/$BaseN64Dir/$OOTRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$OOTPlayerDir
@@ -281,7 +281,7 @@ oot(){
         archipelago_generate
         SystemForAutolaunch="N64"
 }
-pokee(){
+pokee-a(){
         BaseRandoDir=$BaseGameDir/$BaseGBADir/$PokeERandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$PokeEPlayerDir
@@ -289,7 +289,7 @@ pokee(){
         archipelago_generate 
         SystemForAutolaunch="GBA"
 }
-pokerb(){
+pokerb-a(){
         BaseRandoDir=$BaseGameDir/$BaseGameboyDir/$PokeRBRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$PokeRBPlayerDir
@@ -297,7 +297,7 @@ pokerb(){
         archipelago_generate 
         SystemForAutolaunch="GAMEBOY"
 }
-smw(){
+smw-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMWRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMWPlayerDir
@@ -305,7 +305,7 @@ smw(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-smz3(){
+smz3-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMZ3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMZ3PlayerDir
@@ -313,7 +313,7 @@ smz3(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-soe(){
+soe-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SOERandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SOEPlayerDir
@@ -321,7 +321,7 @@ soe(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-sm(){
+sm-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMPlayerDir
@@ -329,7 +329,7 @@ sm(){
         archipelago_generate 
          SystemForAutolaunch="SNES"
 }
-yoshi(){
+yoshi-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMW2RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMW2PlayerDir
@@ -337,7 +337,7 @@ yoshi(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-yugioh06(){
+yugioh06-a(){
         BaseRandoDir=$BaseGameDir/$BaseGBADir/$YGORandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$YGOPlayerDir
@@ -345,7 +345,7 @@ yugioh06(){
         archipelago_generate 
         SystemForAutolaunch="GBA"
 }
-zillion(){
+zillion-a(){
         BaseRandoDir=$BaseGameDir/$BaseSMSDir/$ZillionRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$ZillionPlayerDir
@@ -384,21 +384,21 @@ cotm(){
 call_menu(){
 
         items=(solarjetman "Solar Jetman NES (akerasi)"
-               alttp "A Link to the Past SNES (Archipelago)"
-               dkc3 "Donkey Kong Country 3 SNES (Archipelago)"
-               cv64 "Castlevania 64 (Archipelago)"
-               kdl3 "Kirby's Dream Land 3 (Archipelago)"
-               loz "The Legend of Zelda NES (Archipelago)"
-               l2 "Lufia 2 Ancient Caves SNES (Archipelago)"
-               mmbn3 "Mega Man Battle Network 3 GBA (Archipelago)"
-               pokerb "Pokemon Red/Blue GB (Archipelago)"
-               sm "Super Metroid SNES (Archipelago)"
-               smw "Super Mario World SNES (Archipelago)"
-               soe "Secret of Evermore SNES (Archipelago)"
-               smz3 "Super Metroid/A Link to the Past Combo SNES (Archipelago)"
-               yoshi "Yoshi's Island SNES (Archipelago)"
-               yugioh06 "YuGiOh Ultimate Masters 2006 GBA (Archipelago)"
-               zillion "Zillion SMS (Archipelago)"
+               alttp-a "A Link to the Past SNES (Archipelago)"
+               dkc3-a "Donkey Kong Country 3 SNES (Archipelago)"
+               cv64-a "Castlevania 64 (Archipelago)"
+               kdl3-a "Kirby's Dream Land 3 (Archipelago)"
+               loz-a "The Legend of Zelda NES (Archipelago)"
+               l2-a "Lufia 2 Ancient Caves SNES (Archipelago)"
+               mmbn3-a "Mega Man Battle Network 3 GBA (Archipelago)"
+               pokerb-a "Pokemon Red/Blue GB (Archipelago)"
+               sm-a "Super Metroid SNES (Archipelago)"
+               smw-a "Super Mario World SNES (Archipelago)"
+               soe-a "Secret of Evermore SNES (Archipelago)"
+               smz3-a "Super Metroid/A Link to the Past Combo SNES (Archipelago)"
+               yoshi-a "Yoshi's Island SNES (Archipelago)"
+               yugioh06-a "YuGiOh Ultimate Masters 2006 GBA (Archipelago)"
+               zillion-a "Zillion SMS (Archipelago)"
                dq3 "Dragon's Quest 3 Super Famicom (cleartonic)"
                cotm "Circle of the Moon (calm-palm)"
                ar "Actraiser Randomizer (Osteoclave)")
@@ -408,24 +408,24 @@ call_menu(){
                          2>&1 >/dev/tty2)
         case $choice in
                 solarjetman) solarjetman ;; 
-                alttp) alttp ;; 
-                dkc3) dkc3 ;;
-                cv64) cv64 ;;
-                kdl3) kdl3 ;;
-                loz) loz ;;     
-                l2) l2 ;;
-                mmbn3) mmbn3 ;;
+                alttp-a) alttp-a ;; 
+                dkc3-a) dkc3-a ;;
+                cv64-a) cv64-a ;;
+                kdl3-a) kdl3-a ;;
+                loz-a) loz-a ;;     
+                l2-a) l2-a ;;
+                mmbn3-a) mmbn3-a ;;
 #        Commented out as it doesn't currently run on MiSTer; left for future fix
-#                oot) oot ;;
-#                pokee) pokee ;;
-                pokerb) pokerb ;;    
-                smw) smw ;;
-                smz3) smz3 ;;
-                soe) soe ;;
-                sm) sm ;;
-                yoshi) yoshi ;;  
-                yugioh06) yugioh06 ;;
-                zillion) zillion ;;
+#                oot-a) oot-a ;;
+#                pokee-a) pokee-a ;;
+                pokerb-a) pokerb-a ;;    
+                smw-a) smw-a ;;
+                smz3-a) smz3-a ;;
+                soe-a) soe-a ;;
+                sm-a) sm-a ;;
+                yoshi-a) yoshi-a ;;  
+                yugioh06-a) yugioh06-a ;;
+                zillion-a) zillion-a ;;
                 dq3) dq3 ;;
                 cotm) cotm ;;
                 ar) ar ;;
@@ -438,24 +438,24 @@ call_menu(){
 }
 case $1 in
         solarjetman) solarjetman ;;
-        alttp) alttp ;;
-        dkc3) dkc3 ;;
-        cv64) cv64 ;;
-        kdl3) kdl3 ;;
-        loz) loz ;;
-        l2) l2 ;;
-        mmbn3) mmbn3 ;;
+        alttp-a) alttp-a ;;
+        dkc3-a) dkc3-a ;;
+        cv64-a) cv64-a ;;
+        kdl3-a) kdl3-a ;;
+        loz-a) loz-a ;;
+        l2-a) l2-a ;;
+        mmbn3-a) mmbn3-a ;;
 #        Commented out as it doesn't currently run on MiSTer; left for future fix
 #        oot) oot ;;
 #        pokee) pokee ;;
-        pokerb) pokerb ;;    
-        smw) smw ;;
-        smz3) smz3 ;;
-        soe) soe ;;
-        sm) sm ;;
-        yoshi) yoshi ;;  
-        yugioh06) yugioh06 ;;
-        zillion) zillion ;;
+        pokerb-a) pokerb-a ;;    
+        smw-a) smw-a ;;
+        smz3-a) smz3-a ;;
+        soe-a) soe-a ;;
+        sm-a) sm-a ;;
+        yoshi-a) yoshi-a ;;  
+        yugioh06-a) yugioh06-a ;;
+        zillion-a) zillion-a ;;
         dq3) dq3 ;;
         cotm) cotm ;;
         ar) ar ;;
