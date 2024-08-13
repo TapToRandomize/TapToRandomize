@@ -33,7 +33,7 @@ taptorandomize:
 	cp -R vendor/shadowrun-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/zelda-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/zilliandomizer build/TapToRandomize/randomizers/
-	cp vendor/mbc/mbc build/TapToRandomize
+	cp vendor/mbc/mbc build/TapToRandomize/randomizers/
 	cd build && zip -r TapToRandomize-0.2.1.zip TapToRandomize/
 clean:
 	cd vendor/dq3hf && make clean
