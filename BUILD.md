@@ -1,5 +1,13 @@
 Build Environment: If you're building for MiSTerFPGA and not trying to port this somewhere, it's easiest to build on a Raspberry Pi running 32 bit Raspbian Legacy (the Debian Bullseye version).
 
+Truly fast way: Log into your raspberry pi, be in a dir you don't mind TapToRandomize living under, and...
+
+```
+git clone https://github.com/TapToRandomize/TapToRandomize.git && cd TapToRandomize && sudo bash ./setup_build_environment.sh && git submodule update --init --recursive && make
+```
+
+It'll still take about 3 and a half hours on a pi4, or 7 on a pi2, but at least then it can be unattended for that time.
+
 Easy way: I've now made a buildscript that should handle all of the environment. Just clone the repo, get into it, and run the script:
 
 ```
