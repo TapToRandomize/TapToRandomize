@@ -12,6 +12,7 @@ mbc:
 	cd vendor/mbc && cc -static -o mbc mbc.c
 taptorandomize:
 	mkdir -p build/TapToRandomize && cp randomizerlauncher* build/TapToRandomize/ 
+	cp -R randomizers/* build/TapToRandomize/randomizers/*
 	cp -R vendor/dq3hf build/TapToRandomize/randomizers/
 	cp -R vendor/cotm-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/ArchipelagoMiSTer/build/exe.* build/TapToRandomize/randomizers/
