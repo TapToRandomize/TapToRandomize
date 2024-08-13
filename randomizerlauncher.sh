@@ -81,6 +81,14 @@ COTMdssRunSpeed=1
 COTMskipCutscenes=0 
 COTMskipMagicItemTutorials=0 
 COTMnerfRocWing=0
+ARRomPath='/media/fat/cifs/games/SNES/randoroms/ar.sfc'
+ARRandoDir=ARRando
+ARExtraLives=0
+ARUnlimitedLives=0
+ARDeathCount=1
+ARSwordUpgrade=0
+ARMarhana='N'
+ARBossRush='C'
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -114,6 +122,32 @@ archipelago_generate(){
         $ArchipelagoDir/ArchipelagoPatch $TmpDir/AP_*P1*.ap*
         cp $TmpDir/AP*$ArchipelagoFileEnding $BaseRandoDir/current
         rm -Rf $TmpDir/*
+}
+actraiser_optionstring(){
+        aroptions=''
+        if (( ARExtraLives > 0 )); then
+                aroptions="-E $aroptions"
+        fi
+        if (( ARUnlimitedLives > 0 )); then
+                aroptions="-U $aroptions"
+        fi
+        if (( ARDeathCount > 0 )); then
+                aroptions="-D $aroptions"
+        fi
+        if (( ARSwordUpgrade > 0 )); then
+                aroptions="-Z $aroptions"
+        fi
+        case $ARMarhana in
+                L) aroptions="-L $aroptions" ;;
+                R) aroptions="-R $aroptions" ;;
+        esac
+        case $ARBossRush in
+                C) aroptions="-C $aroptions" ;;
+                S) aroptions="-S $aroptions" ;;
+        esac
+        seed=$RANDOM
+        aroptions="$aroptions -s $seed -o $BaseRandoDir/current/$seed.sfc $ARRomPath"
+        echo "$aroptions"
 }
 cotm_options(){
         echo -e "ignoreCleansing $COTMignoreCleansing #boolean\napplyAutoRunPatch $COTMapplyAutoRunPatch #boolean" > "options.txt"
@@ -155,11 +189,21 @@ build_options_flags_sj(){
 }
 setupPythonEnv(){
         python -m ensurepip
-        python -m pip install venv
         if [ ! -e .venv$EnvIdentifier/bin/activate ]; then
             python -m venv .venv$EnvIdentifier
         fi
         . .venv$EnvIdentifier/bin/activate
+}
+ar(){
+        BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ARRandoDir
+        shift_old_seeds
+        EnvIdentifier="ar"
+        setupPythonEnv
+        actraiser_optionstring
+        cd randomizers/actraiser-randomizer/
+        python actraiser_randomizer.py $aroptions
+        cd ../../
+        deactivate
 }
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
@@ -356,7 +400,8 @@ call_menu(){
                yugioh06 "YuGiOh Ultimate Masters 2006 GBA (Archipelago)"
                zillion "Zillion SMS (Archipelago)"
                dq3 "Dragon's Quest 3 Super Famicom (cleartonic)"
-               cotm "Circle of the Moon (calm-palm)")
+               cotm "Circle of the Moon (calm-palm)"
+               ar "Actraiser Randomizer (Osteoclave)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
@@ -383,6 +428,7 @@ call_menu(){
                 zillion) zillion ;;
                 dq3) dq3 ;;
                 cotm) cotm ;;
+                ar) ar ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -412,6 +458,7 @@ case $1 in
         zillion) zillion ;;
         dq3) dq3 ;;
         cotm) cotm ;;
+        ar) ar ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac
