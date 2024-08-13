@@ -80,6 +80,7 @@ COTMallBossesRequired=0
 COTMdssRunSpeed=1 
 COTMskipCutscenes=0 
 COTMskipMagicItemTutorials=0 
+COTMnerfRocWing=0
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -115,15 +116,15 @@ archipelago_generate(){
         rm -Rf $TmpDir/*
 }
 cotm_options(){
-        echo -e "ignoreCleansing $COTMignoreCleansing \napplyAutoRunPatch $COTMapplyAutoRunPatch " > "options.txt"
-        echo -e "applyNoDSSGlitchPatch $COTMapplyNoDSSGlitchPatch \napplyAllowSpeedDash $COTMapplyAllowSpeedDash " >> options.txt
-        echo -e "breakIronMaidens $COTMbreakIronMaidens \nlastKeyRequired $COTMlastKeyRequired " >> options.txt
-        echo -e "lastKeyAvailable $COTMlastKeyAvailable \napplyBuffFamiliars $COTMapplyBuffFamiliars " >> options.txt
-        echo -e "applyBuffSubweapons $COTMapplyBuffSubweapons \napplyShooterStrength $COTMapplyShooterStrength " >> options.txt
-        echo -e "doNotRandomizeItems $COTMdoNotRandomizeItems \nRandomItemHardMode $COTMRandomItemHardMode " >> options.txt
-        echo -e "halveDSSCards $COTMhalveDSSCards \ncountdown $COTMcountdown \nsubweaponShuffle $COTMsubweaponShuffle " >> options.txt
-        echo -e "noMPDrain $COTMnoMPDrain \nallBossesRequired $COTMallBossesRequired \ndssRunSpeed $COTMdssRunSpeed " >> options.txt
-        echo -n -e "skipCutscenes $COTMskipCutscenes \nskipMagicItemTutorials $COTMskipMagicItemTutorials " >> options.txt
+        echo -e "ignoreCleansing $COTMignoreCleansing #boolean\napplyAutoRunPatch $COTMapplyAutoRunPatch #boolean" > "options.txt"
+        echo -e "applyNoDSSGlitchPatch $COTMapplyNoDSSGlitchPatch #boolean\napplyAllowSpeedDash $COTMapplyAllowSpeedDash #boolean" >> options.txt
+        echo -e "breakIronMaidens $COTMbreakIronMaidens #boolean\nlastKeyRequired $COTMlastKeyRequired #int" >> options.txt
+        echo -e "lastKeyAvailable $COTMlastKeyAvailable #int\napplyBuffFamiliars $COTMapplyBuffFamiliars #boolean" >> options.txt
+        echo -e "applyBuffSubweapons $COTMapplyBuffSubweapons #boolean\napplyShooterStrength $COTMapplyShooterStrength #boolean" >> options.txt
+        echo -e "doNotRandomizeItems $COTMdoNotRandomizeItems #boolean\nRandomItemHardMode $COTMRandomItemHardMode #boolean" >> options.txt
+        echo -e "halveDSSCards $COTMhalveDSSCards #boolean\ncountdown $COTMcountdown #boolean\nsubweaponShuffle $COTMsubweaponShuffle #boolean" >> options.txt
+        echo -e "noMPDrain $COTMnoMPDrain #boolean\nallBossesRequired $COTMallBossesRequired #boolean\ndssRunSpeed $COTMdssRunSpeed #boolean" >> options.txt
+        echo -n -e "skipCutscenes $COTMskipCutscenes #boolean\nskipMagicItemTutorials $COTMskipMagicItemTutorials #boolean\nnerfRocWing $COTMnerfRocWing #boolean" >> options.txt
 }
 build_options_flags_sj(){
         SJOptionsString=""
