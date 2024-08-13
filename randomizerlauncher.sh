@@ -446,8 +446,8 @@ case $1 in
         l2-a) l2-a ;;
         mmbn3-a) mmbn3-a ;;
 #        Commented out as it doesn't currently run on MiSTer; left for future fix
-#        oot) oot ;;
-#        pokee) pokee ;;
+#        oot-a) oot-a ;;
+#        pokee-a) pokee-a ;;
         pokerb-a) pokerb-a ;;    
         smw-a) smw-a ;;
         smz3-a) smz3-a ;;
