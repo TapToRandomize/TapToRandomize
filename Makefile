@@ -11,12 +11,13 @@ randstalker:
 mbc:
 	cd vendor/mbc && cc -static -o mbc mbc.c
 taptorandomize:
-	mkdir -p build/TapToRandomize && cp randomizerlauncher* build/TapToRandomize/ 
-	cp -R randomizers/* build/TapToRandomize/randomizers/*
+	mkdir -p build/TapToRandomize && cp randomizerlauncher* build/TapToRandomize/
+	mkdir -p build/TapToRandomize/randomizers/
+	cp -R randomizers/* build/TapToRandomize/randomizers/
 	cp -R vendor/dq3hf build/TapToRandomize/randomizers/
 	cp -R vendor/cotm-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/ArchipelagoMiSTer/build/exe.* build/TapToRandomize/randomizers/
-	mv build/TapToRandomize/randomizers/exe.* build/TapToRandomize/archipelago-0.5.0-MiSTerFPGA
+	mv build/TapToRandomize/randomizers/exe.* build/TapToRandomize/randomizers/archipelago-0.5.0-MiSTerFPGA
 	cp -R vendor/actraiser-randomizer build/TapToRandomize/randomizers/
 	cp -R vendor/ALttPDoorRandomizer build/TapToRandomize/randomizers/
 	cp -R vendor/bof3_vast_violence build/TapToRandomize/randomizers/
