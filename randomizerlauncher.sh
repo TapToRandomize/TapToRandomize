@@ -10,6 +10,7 @@ BaseN64Dir=N64
 BaseGenesisDir=Genesis
 BaseSMSDir=SMS
 BasePSXDir=PSX
+BaseMSXDir=MSX
 TmpDir=$RandomizerBasedir/taptorandomizetmp
 ArchipelagoDir=$RandomizerBasedir/archipelago-0.5.0-MiSTerFPGA
 SolarJetmanRandoDir=SolarJetmanRando
@@ -108,7 +109,7 @@ FFL2MonsterStats=1
 FFL2MutantSkills=1
 FFL2Shops=1
 FFL2Treasure=1
-FFL2RomPath='/media/fat/cifs/GAMEBOY/randoroms/ffl2.gb'
+FFL2RomPath='/media/fat/cifs/games/GAMEBOY/randoroms/ffl2.gb'
 FFL2RandoDir=FFL2Rando
 FFTAbilities=1
 FFTMusic=0
@@ -123,8 +124,10 @@ FFTTrophies=1
 FFTUnits=1
 FFTWeapons=1
 FFTStatus=1
-FFTRomPath='/media/fat/cifs/PSX/randoroms/fft.iso'
+FFTRomPath='/media/fat/cifs/games/PSX/randoroms/fft.iso'
 FFTRandoDir=FFTRando
+MGRomPath='/media/fat/cifs/games/NES/randoroms/mg.nes'
+MGRandoDir=MGRando
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -379,6 +382,19 @@ fft(){
         cd ../../
         deactivate
         SystemForAutoLaunch=PSX
+}
+mg(){
+	    BaseRandoDir=$BaseGameDir/$BaseMSXDir/$MGRandoDir
+	    shift_old_seeds
+	    EnvIdentifier="mg"
+	    cd randomizers/mg-random/
+	    cp $MGRomPath ./
+	    python server2.py
+	    cp random.rom $BaseRandoDir/current/$RANDOM.rom
+	    rm *.rom
+	    cd ../../
+	    SystemForAutoLaunch=MSX
+	    
 }
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
