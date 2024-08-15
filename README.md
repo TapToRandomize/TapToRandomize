@@ -4,6 +4,8 @@ TapToRandomize is a simple script to automize randomizer usage on MiSTerFPGA, be
 
 Build instructions are under Build.md, but if you're not a developer, you're better off just downloading the release.
 
+YOU WILL NEED TO EDIT THE INI FILES FOR ANYTHING TO WORK.
+
 Usage: randomizerlauncher.sh randomizername
 
 Without TapTo, just open the script in the scripts menu, if you can view interactive scripts; it'll give you a list of randomizers, just select the one you want.
@@ -69,6 +71,14 @@ cotm (GBA Castlevania Circle of the Moon)
 ( From Osteoclave https://github.com/Osteoclave/actraiser-randomizer )
 
 ar (SNES Actraiser)
+
+(from Abyssonym)
+
+bof3vv (PSX Breath of Fire 3 (Vast Violence)
+
+ffl2 (GBA Final Fantasy Legend 2 (Mighty Power))
+
+
 
 Version: 0.2.2
 Author: akerasi (Allen Tipper)

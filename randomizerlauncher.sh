@@ -89,6 +89,26 @@ ARDeathCount=1
 ARSwordUpgrade=0
 ARMarhana='N'
 ARBossRush='C'
+BOF3Abilities=1
+BOF3Characters=1
+BOF3Enemies=0
+BOF3DragonLoc=0
+BOF3Masters=0
+BOF3Items=1
+BOF3Shops=1
+BOF3Treasure=1
+BOF3RandoDir=BOF3Rando
+BOF3RomPath='/media/fat/cifs/games/PSX/randoroms/bof3.iso'
+FFL2Evolutions=1
+FFL3Formations=1
+FFL2Items=1
+FFL2MonsterSkills=1
+FFL2MonsterStats=1
+FFL2MutantSkills=1
+FFL2Shops=1
+FFL2Treasure=1
+
+
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -149,6 +169,67 @@ actraiser_optionstring(){
         aroptions="$aroptions -s $seed -o $BaseRandoDir/current/$seed.sfc $ARRomPath"
         echo "$aroptions"
 }
+bof3vv_options(){
+        bof3vvoptions='-'
+        if (( BOF3Abilities > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}a"
+        fi
+        if (( BOF3Characters > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}c"
+        fi
+        if (( BOF3Enemies > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}e"
+        fi
+        if (( BOF3DragonLoc > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}g"
+        fi
+        if (( BOF3Masters > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}m"
+        fi
+        if (( BOF3Itemsc > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}q"
+        fi
+        if (( BOF3Shops > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}s"
+        fi
+        if (( BOF3Treasure > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}t"
+        fi        
+        seed=$RANDOM
+        bof3vvoptions="$bof3vvoptions $BOF3RomPath $seed"
+        echo "$bof3vvoptions"
+}
+ffl2_options(){
+	    ffl2options='-'
+        if (( FFL2Evolutions > 0 )); then
+                ffl2options="{$ffl2options}e"
+        fi
+        if (( FFL2Formations > 0 )); then
+                ffl2options="{$ffl2options}f"
+        fi
+        if (( FFL2Items > 0 )); then
+                ffl2options="{$ffl2options}i"
+        fi
+        if (( FFL2MonsterSkills > 0 )); then
+                ffl2options="{$ffl2options}k"
+        fi
+        if (( FL2MonsterStats > 0 )); then
+                ffl2options="{$ffl2options}m"
+        fi
+        if (( FFL2MutantSkills > 0 )); then
+                ffl2options="{$ffl2options}u"
+        fi
+        if (( FFL2Shops > 0 )); then
+                ffl2options="{$ffl2options}s"
+        fi
+        if (( FFL2Treasure > 0 )); then
+                ffl2options="{$ffl2options}t"
+        fi        
+        seed=$RANDOM
+        ffl2options="$ffl2options $FFL2RomPath $seed"
+        echo "$ffl2options"
+}
+}
 cotm_options(){
         echo -e "ignoreCleansing $COTMignoreCleansing #boolean\napplyAutoRunPatch $COTMapplyAutoRunPatch #boolean" > "options.txt"
         echo -e "applyNoDSSGlitchPatch $COTMapplyNoDSSGlitchPatch #boolean\napplyAllowSpeedDash $COTMapplyAllowSpeedDash #boolean" >> options.txt
@@ -198,10 +279,34 @@ ar(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ARRandoDir
         shift_old_seeds
         EnvIdentifier="ar"
+        cd randomizers/actraiser-randomizer/
         setupPythonEnv
         actraiser_optionstring
-        cd randomizers/actraiser-randomizer/
         python actraiser_randomizer.py $aroptions
+        cd ../../
+        deactivate
+}
+bof3vv(){
+        BaseRandoDir=$BaseGameDir/$BaseSnesDir/$BOF3RandoDir
+        shift_old_seeds
+        EnvIdentifier="bof3"
+        cd randomizers/bof3_vast_violence
+        setupPythonEnv
+        bof3vv_options
+        python randomizer.py $bof3vv_options
+        mv *.iso $BaseRandoDir/current/
+        cd ../../
+        deactivate
+}
+ffl2(){
+        BaseRandoDir=$BaseGameDir/$BaseSnesDir/$FFL2RandoDir
+        shift_old_seeds
+        EnvIdentifier="ffl2"
+        cd randomizers/ffl2mp
+        setupPythonEnv
+        ffl2_options
+        python randomizer.py $ffl2_options
+        mv *.gb $BaseRandoDir/current/
         cd ../../
         deactivate
 }
@@ -401,7 +506,9 @@ call_menu(){
                zillion-a "Zillion SMS (Archipelago)"
                dq3 "Dragon's Quest 3 Super Famicom (cleartonic)"
                cotm "Circle of the Moon (calm-palm)"
-               ar "Actraiser Randomizer (Osteoclave)")
+               ar "Actraiser Randomizer (Osteoclave)"
+               bof3vv "Breath of Fire 3 PSX (Abyssonym)"
+               ffl2 "Final Fantasy Legend 2 GB (Abyssonym)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
@@ -429,6 +536,8 @@ call_menu(){
                 dq3) dq3 ;;
                 cotm) cotm ;;
                 ar) ar ;;
+                bof3vv) bof3vv ;;
+                ffl2) ffl2 ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -459,6 +568,8 @@ case $1 in
         dq3) dq3 ;;
         cotm) cotm ;;
         ar) ar ;;
+        bof3vv) bof3vv ;;
+        ffl2) ffl2 ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac
