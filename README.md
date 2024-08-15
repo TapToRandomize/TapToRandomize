@@ -74,9 +74,11 @@ ar (SNES Actraiser)
 
 (from Abyssonym)
 
-bof3vv (PSX Breath of Fire 3 (Vast Violence)
+bof3vv (PSX Breath of Fire 3 (Vast Violence))
 
 ffl2 (GBA Final Fantasy Legend 2 (Mighty Power))
+
+fft (PSX Final Fantasy Tactics)
 
 
 

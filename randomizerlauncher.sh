@@ -9,6 +9,7 @@ BaseGBADir=GBA
 BaseN64Dir=N64
 BaseGenesisDir=Genesis
 BaseSMSDir=SMS
+BasePSXDir=PSX
 TmpDir=$RandomizerBasedir/taptorandomizetmp
 ArchipelagoDir=$RandomizerBasedir/archipelago-0.5.0-MiSTerFPGA
 SolarJetmanRandoDir=SolarJetmanRando
@@ -109,7 +110,21 @@ FFL2Shops=1
 FFL2Treasure=1
 FFL2RomPath='/media/fat/cifs/GAMEBOY/randoroms/ffl2.gb'
 FFL2RandoDir=FFL2Rando
-
+FFTAbilities=1
+FFTMusic=0
+FFTFormations-1
+FFTJobInnates=1
+FFTJobStats=1
+FFTShop=1
+FFTMaps=1
+FFTJobRequirements=1
+FTJobSkillsets=1
+FFTTrophies=1
+FFTUnits=1
+FFTWeapons=1
+FFTStatus=1
+FFTRomPath='/media/fat/cifs/PSX/randoroms/fft.iso'
+FFTRandoDir=FFTRando
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -230,6 +245,44 @@ ffl2_options(){
         ffl2options="$ffl2options $FFL2RomPath $seed"
         echo "$ffl2options"
 }
+fft_options(){
+		fftoptions='-'
+        if (( FFTAbilities > 0 )); then
+                fftoptions="{$fftoptions}a"
+        fi
+        if (( FFTMusic > 0 )); then
+                fftoptions="{$fftoptions}c"
+        fi
+        if (( FFTFormations > 0 )); then
+                fftoptions="{$fftoptions}f"
+        fi
+        if (( FFTJobInnates > 0 )); then
+                fftoptions="{$fftoptions}i"
+        fi
+        if (( FFTJobStats > 0 )); then
+                fftoptions="{$fftoptions}j"
+        fi
+        if (( FFTShop > 0 )); then
+                fftoptions="{$fftoptions}p"
+        fi
+        if (( FFTMaps > 0 )); then
+                fftoptions="{$fftoptions}m"
+        fi
+        if (( FFTTrophies > 0 )); then
+                fftoptions="{$fftoptions}t"
+        fi
+        if (( FFTUnits > 0 )); then
+                fftoptions="{$fftoptions}u"
+        fi
+        if (( FFTWeapons > 0 )); then
+                fftoptions="{$fftoptions}w"
+        fi
+        if (( FFTStatus > 0 )); then
+                fftoptions="{$fftoptions}y"
+        fi        
+        seed=$RANDOM
+        fftoptions="$fftoptions $FFL2RomPath $seed"
+        echo "$fftoptions"
 }
 cotm_options(){
         echo -e "ignoreCleansing $COTMignoreCleansing #boolean\napplyAutoRunPatch $COTMapplyAutoRunPatch #boolean" > "options.txt"
@@ -286,30 +339,46 @@ ar(){
         python actraiser_randomizer.py $aroptions
         cd ../../
         deactivate
+        SystemForAutoLaunch=SNES
 }
 bof3vv(){
-        BaseRandoDir=$BaseGameDir/$BaseSnesDir/$BOF3RandoDir
+        BaseRandoDir=$BaseGameDir/$BasePSXDir/$BOF3RandoDir
         shift_old_seeds
         EnvIdentifier="bof3"
         cd randomizers/bof3_vast_violence
         setupPythonEnv
         bof3vv_options
-        python randomizer.py $bof3vv_options
+        python randomizer.py $bof3vvoptions
         mv *.iso $BaseRandoDir/current/
         cd ../../
         deactivate
+        SystemForAutoLaunch=PSX
 }
 ffl2(){
-        BaseRandoDir=$BaseGameDir/$BaseSnesDir/$FFL2RandoDir
+        BaseRandoDir=$BaseGameDir/$BaseGameboyDir/$FFL2RandoDir
         shift_old_seeds
         EnvIdentifier="ffl2"
         cd randomizers/ffl2mp
         setupPythonEnv
         ffl2_options
-        python randomizer.py $ffl2_options
+        python randomizer.py $ffl2options
         mv *.gb $BaseRandoDir/current/
         cd ../../
         deactivate
+        SystemForAutoLaunch=GB
+}
+fft(){
+        BaseRandoDir=$BaseGameDir/$BasePSXDir/$FFTRandoDir
+        shift_old_seeds
+        EnvIdentifier="fft"
+        cd randomizers/fftrctcr
+        setupPythonEnv
+        fft_options
+        python randomizer.py $fftoptions
+        mv *.iso $BaseRandoDir/current/
+        cd ../../
+        deactivate
+        SystemForAutoLaunch=PSX
 }
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
@@ -509,7 +578,8 @@ call_menu(){
                cotm "Circle of the Moon (calm-palm)"
                ar "Actraiser Randomizer (Osteoclave)"
                bof3vv "Breath of Fire 3 PSX (Abyssonym)"
-               ffl2 "Final Fantasy Legend 2 GB (Abyssonym)")
+               ffl2 "Final Fantasy Legend 2 GB (Abyssonym)"
+               fft "Final Fantasy Tactics PSX (Abyssonym)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
@@ -539,6 +609,7 @@ call_menu(){
                 ar) ar ;;
                 bof3vv) bof3vv ;;
                 ffl2) ffl2 ;;
+                fft) fft ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -571,6 +642,7 @@ case $1 in
         ar) ar ;;
         bof3vv) bof3vv ;;
         ffl2) ffl2 ;;
+        fft) fft ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac
