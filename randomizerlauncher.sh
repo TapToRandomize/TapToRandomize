@@ -107,7 +107,8 @@ FFL2MonsterStats=1
 FFL2MutantSkills=1
 FFL2Shops=1
 FFL2Treasure=1
-
+FFL2RomPath='/media/fat/cifs/GAMEBOY/randoroms/ffl2.gb'
+FFL2RandoDir=FFL2Rando
 
 SystemForAutolaunch=none
 KeepSeeds=5
