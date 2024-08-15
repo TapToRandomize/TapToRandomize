@@ -80,6 +80,9 @@ ffl2 (GBA Final Fantasy Legend 2 (Mighty Power))
 
 fft (PSX Final Fantasy Tactics)
 
+(from wijnen)
+
+mg (Metal Gear MSX)
 
 
 Version: 0.2.2

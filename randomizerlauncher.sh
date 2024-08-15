@@ -595,7 +595,8 @@ call_menu(){
                ar "Actraiser Randomizer (Osteoclave)"
                bof3vv "Breath of Fire 3 PSX (Abyssonym)"
                ffl2 "Final Fantasy Legend 2 GB (Abyssonym)"
-               fft "Final Fantasy Tactics PSX (Abyssonym)")
+               fft "Final Fantasy Tactics PSX (Abyssonym)"
+               mg "Metal Gear MSX (Wijnen)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
@@ -626,6 +627,7 @@ call_menu(){
                 bof3vv) bof3vv ;;
                 ffl2) ffl2 ;;
                 fft) fft ;;
+                mg) mg ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -659,6 +661,7 @@ case $1 in
         bof3vv) bof3vv ;;
         ffl2) ffl2 ;;
         fft) fft ;;
+        mg) mg ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac
