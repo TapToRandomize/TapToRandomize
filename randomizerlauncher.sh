@@ -128,6 +128,11 @@ FFTRomPath='/media/fat/cifs/games/PSX/randoroms/fft.iso'
 FFTRandoDir=FFTRando
 MGRomPath='/media/fat/cifs/games/NES/randoroms/mg.nes'
 MGRandoDir=MGRando
+MN64RomPath='/media/fat/cifs/games/N64/randoroms/mn64.z64'
+MN64RandoDir=MN64Rando
+LandstalkerRandoDir=LandstalkerRando
+LandstalkerRomPath='/media/fat/cifs/games/Genesis/randoroms/landstalker.sg'
+LandstalkerPreset='default.json'
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -396,6 +401,24 @@ mg(){
 	    SystemForAutoLaunch=MSX
 	    
 }
+mn64(){
+		BaseRandoDir=$BaseGameDir/$BaseN64Dir/$MN64RandoDir
+	    shift_old_seeds
+	    cd randomizers/mn64rando/
+	    export MN64_CONFIG=/media/fat/Scripts/mn64settings.yaml
+	    python randomizer.py $MN64RomPath
+	    mv *.z64 $BaseRandoDir/current
+	    cd ../../
+	    SystemForAutoLaunch=N64
+}
+landstalker(){
+		BaseRandoDir=$BaseGameDir/$BaseGenesisDir/$LandstalkerRandoDir
+	    shift_old_seeds
+	    cd randomizers/randtalker/
+	    randstalker --inputRom=$LandstalkerRomPath --outputRom=$BaseRandoDir/current --noPause --ingametracker --preset=presets/$LandstalkerPreset
+	    cd ../../
+	    SystemForAutoLaunch=Genesis
+}
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
         shift_old_seeds
@@ -596,7 +619,8 @@ call_menu(){
                bof3vv "Breath of Fire 3 PSX (Abyssonym)"
                ffl2 "Final Fantasy Legend 2 GB (Abyssonym)"
                fft "Final Fantasy Tactics PSX (Abyssonym)"
-               mg "Metal Gear MSX (Wijnen)")
+               mg "Metal Gear MSX (Wijnen)"
+               landstalker "Landstalker Genesis (Dinopony)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
@@ -628,6 +652,7 @@ call_menu(){
                 ffl2) ffl2 ;;
                 fft) fft ;;
                 mg) mg ;;
+                landstalker) landstalker ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -662,6 +687,9 @@ case $1 in
         ffl2) ffl2 ;;
         fft) fft ;;
         mg) mg ;;
+#commented out because, although it technically works, it takes a LITERAL hour.
+#        mn64) mn64 ;;
+        landstalker) landstalker ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac
