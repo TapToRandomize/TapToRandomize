@@ -113,7 +113,7 @@ FFL2RomPath='/media/fat/cifs/games/GAMEBOY/randoroms/ffl2.gb'
 FFL2RandoDir=FFL2Rando
 FFTAbilities=1
 FFTMusic=0
-FFTFormations-1
+FFTFormations=1
 FFTJobInnates=1
 FFTJobStats=1
 FFTShop=1
@@ -131,8 +131,10 @@ MGRandoDir=MGRando
 MN64RomPath='/media/fat/cifs/games/N64/randoroms/mn64.z64'
 MN64RandoDir=MN64Rando
 LandstalkerRandoDir=LandstalkerRando
-LandstalkerRomPath='/media/fat/cifs/games/Genesis/randoroms/landstalker.sg'
+LandstalkerRomPath='/media/fat/cifs/games/Genesis/randoroms/landstalker.md'
 LandstalkerPreset='default.json'
+ShadowrunRomPath='/media/fat/cifs/games/SNES/randoroms/sr.smc'
+ShadowrunRandoDir=ShadowrunRando
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -414,10 +416,19 @@ mn64(){
 landstalker(){
 		BaseRandoDir=$BaseGameDir/$BaseGenesisDir/$LandstalkerRandoDir
 	    shift_old_seeds
-	    cd randomizers/randtalker/
-	    randstalker --inputRom=$LandstalkerRomPath --outputRom=$BaseRandoDir/current --noPause --ingametracker --preset=presets/$LandstalkerPreset
+	    cd randomizers/randstalker/
+	    ./randstalker --inputRom=$LandstalkerRomPath --outputRom=$BaseRandoDir/current --noPause --ingametracker --preset=presets/$LandstalkerPreset
 	    cd ../../
 	    SystemForAutoLaunch=Genesis
+}
+sr(){
+	    BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ShadowrunRandoDir
+	    shift_old_seeds
+	    cd randomizers/shadowrun-randomizer
+	    seed=$RANDOM
+	    python shadowrun_randomizer.py -s $seed -o "$BaseRandoDir/current/$seed.sfc" "$ShadowrunRomPath"
+	    cd ../../
+	    SystemForAutoLaunch=SNES
 }
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
@@ -620,7 +631,8 @@ call_menu(){
                ffl2 "Final Fantasy Legend 2 GB (Abyssonym)"
                fft "Final Fantasy Tactics PSX (Abyssonym)"
                mg "Metal Gear MSX (Wijnen)"
-               landstalker "Landstalker Genesis (Dinopony)")
+               landstalker "Landstalker Genesis (Dinopony)"
+               sr "Shadowrun SNES (Osteoclave)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
@@ -653,6 +665,7 @@ call_menu(){
                 fft) fft ;;
                 mg) mg ;;
                 landstalker) landstalker ;;
+                sr) sr ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -690,6 +703,7 @@ case $1 in
 #commented out because, although it technically works, it takes a LITERAL hour.
 #        mn64) mn64 ;;
         landstalker) landstalker ;;
+        sr) sr ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac
