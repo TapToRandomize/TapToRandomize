@@ -40,7 +40,7 @@ You'll be manually building a new version of CMake by hand, so you can build ran
 sudo echo 'deb-src http://raspbian.raspberrypi.org/raspbian/ bullseye main contrib non-free rpi' >> /etc/apt/sources.list
 ```
 
-Uncomment the last line in there, then
+That'll add that to your sources. Then,
 
 ```
 sudo apt update && sudo apt build-dep cmake -y
