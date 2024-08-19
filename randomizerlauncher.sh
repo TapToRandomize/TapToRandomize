@@ -135,6 +135,20 @@ LandstalkerRomPath='/media/fat/cifs/games/Genesis/randoroms/landstalker.md'
 LandstalkerPreset='default.json'
 ShadowrunRomPath='/media/fat/cifs/games/SNES/randoroms/sr.smc'
 ShadowrunRandoDir=ShadowrunRando
+ALTTPDRandoDir=ALTTPDoorRando
+ALTTPDRomPath='/media/fat/cifs/games/SNES/randoroms/alttp.smc'
+GSRandoDir=GSRando
+GSRomPath='/media/fat/cifs/games/GBA/randoroms/gs.gba'
+LADXRandoDir=LADXRando
+LADXRomPath='/media/fat/cifs/games/GAMEBOY/randoroms/ladx.gbc'
+MegaManWeapons=1
+MegaManPalette=1
+MegaManWeakness=1
+MegaManBossDamage=1
+MegaManMusic=0
+MegaManRoll=1
+MegaManRompath='/media/fat/cifs/games/NES/randoroms/mm.nes'
+MegaManRandoDir=MMRando
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -305,6 +319,28 @@ cotm_options(){
         echo -e "noMPDrain $COTMnoMPDrain #boolean\nallBossesRequired $COTMallBossesRequired #boolean\ndssRunSpeed $COTMdssRunSpeed #boolean" >> options.txt
         echo -n -e "skipCutscenes $COTMskipCutscenes #boolean\nskipMagicItemTutorials $COTMskipMagicItemTutorials #boolean\nnerfRocWing $COTMnerfRocWing #boolean" >> options.txt
 }
+megaman_options(){
+	    mmoptions = ""
+	    if (( MegaManWeapons == 0 )); then
+			    mmoptions = "-w $mmoptions"
+		fi
+	    if (( MegaManPalette == 0 )); then
+			    mmoptions = "-p $mmoptions"
+		fi
+	    if (( MegaManWeakness > 0 )); then
+			    mmoptions = "+weakness $mmoptions"
+		fi
+	    if (( MegaManBossDamage > 0 )); then
+			    mmoptions = "+damagetoboss $mmoptions"
+		fi
+	    if (( MegaManMusic > 0 )); then
+			    mmoptions = "+music $mmoptions"
+		fi
+	    if (( MegaManRoll > 0 )); then
+			    mmoptions = "+roll $mmoptions"
+		fi
+		mmoptions = "$mmoptions -i $MegaManRomPath -o $BaseRandoDir/current/"	
+}
 build_options_flags_sj(){
         SJOptionsString=""
         if [ "$SolarJetmanRandomizeAstronaut" == "1" ]; then
@@ -375,7 +411,7 @@ ffl2(){
         mv *.gb $BaseRandoDir/current/
         cd ../../
         deactivate
-        SystemForAutoLaunch=GB
+        SystemForAutoLaunch=GAMEBOY
 }
 fft(){
         BaseRandoDir=$BaseGameDir/$BasePSXDir/$FFTRandoDir
@@ -429,6 +465,40 @@ sr(){
 	    python shadowrun_randomizer.py -s $seed -o "$BaseRandoDir/current/$seed.sfc" "$ShadowrunRomPath"
 	    cd ../../
 	    SystemForAutoLaunch=SNES
+}
+alttp-door(){
+	    BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ALTTPDRandoDir
+	    shift_old_seeds
+	    cd randomizers/ALttPDoorRandomizer
+	    EnvIdentifier="alttpd"
+	    setupPythonEnv
+	    python -m pip install aenum fast-enum python-bps-continued aioconsole websockets colorama pyyaml --cache-dir=/media/fat/Scripts/randomizers/taptorandomizetmp/
+	    python DungeonRandomizer.py --rom "$ALTTPDRomPath" --shuffle full --outputpath $BaseRandoDir/current --suppress_spoiler
+	    deactivate
+	    cd ../../
+	    SystemForAutoLaunch=SNES
+}
+gs(){
+	    BaseRandoDir=$BaseGameDir/$BaseGBADir/$GSRandoDir
+	    shift_old_seeds
+	    cd randomizers/GS-Randomizer
+	    EnvIdentifier="gs"
+	    setupPythonEnv
+	    python -m pip install hjson
+	    cp $GSRomPath ./GOLDEN_SUN_A_AGSE00.gba
+	    python randomizer.py /media/fat/Scripts/randomizers/jsons/GoldenSun.json
+	    rm GOLDEN_SUN_A_AGSE00.gba
+	    cp *.gba $BaseRandoDir/current/
+	    cd ../../
+	    SystemForAutoLaunch=GBA
+}
+ladx(){
+	    BaseRandoDir=$BaseGameDir/$BaseGameboyDir/$LADXRandoDir
+	    shift_old_seeds
+	    cd randomizers/LADXR
+	    python main.py --spoilerformat none $LADXRomPath
+	    mv *.gbc $BaseRandoDir/current
+	    SystemForAutoLaunch="GAMEBOY" 
 }
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
@@ -632,7 +702,9 @@ call_menu(){
                fft "Final Fantasy Tactics PSX (Abyssonym)"
                mg "Metal Gear MSX (Wijnen)"
                landstalker "Landstalker Genesis (Dinopony)"
-               sr "Shadowrun SNES (Osteoclave)")
+               sr "Shadowrun SNES (Osteoclave)"
+               alttp-door "A Link To The Past Door Randomizer SNES (aerinon)"
+               ladx "Link's Awakening DX (daid)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
@@ -666,6 +738,9 @@ call_menu(){
                 mg) mg ;;
                 landstalker) landstalker ;;
                 sr) sr ;;
+                alttp-door) alttp-door ;;
+                ladx) ladx ;;
+#                gs) gs ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -704,6 +779,10 @@ case $1 in
 #        mn64) mn64 ;;
         landstalker) landstalker ;;
         sr) sr ;;
+        alttp-door) alttp-door ;;
+#commented out because underlying randomizer doesn't function on default seed; may fix it for them.'
+#        gs) gs ;;
+        ladx) ladx ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac

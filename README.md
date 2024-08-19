@@ -72,6 +72,8 @@ cotm (GBA Castlevania Circle of the Moon)
 
 ar (SNES Actraiser)
 
+sr (SNES Shadowrun)
+
 (from Abyssonym)
 
 bof3vv (PSX Breath of Fire 3 (Vast Violence))
@@ -82,8 +84,17 @@ fft (PSX Final Fantasy Tactics)
 
 (from wijnen)
 
-mg (Metal Gear MSX)
+mg (MSX Metal Gear)
 
+(from Dinopony)
+
+landstalker (Genesis Landstalker)
+
+(from aerinon)
+
+alttp-door (SNES A Link To The Past Door Randomizer) (BETA, does not allow option changing easily)
+
+ladx (GBC Link's Awakening DX) (BETA does not allow option changing easily)
 
 Version: 0.2.2
 Author: akerasi (Allen Tipper)
