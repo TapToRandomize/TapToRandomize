@@ -6,9 +6,31 @@ Build instructions are under Build.md, but if you're not a developer, you're bet
 
 YOU WILL NEED TO EDIT THE INI FILES FOR ANYTHING TO WORK.
 
-Usage: randomizerlauncher.sh randomizername
+Installation:
 
-Without TapTo, just open the script in the scripts menu, if you can view interactive scripts; it'll give you a list of randomizers, just select the one you want.
+Unzip the release zip into /media/fat/Scripts
+
+Once it's there, you're going to need to dive into the very large Config files; I plan on making a menu for them as my next major release, but that isn't done at the moment. The main thing you will NEED to alter are any line with "rompath" or "RomPath" in the name. These lines point at your ROMs. Also, if you don't currently use cifs, which the defaults point at, you'll need to change BaseGameDir in the main .ini file. The two config files are:
+
+randomizerlauncher.ini
+
+and
+
+randomizerlauncheryaml.ini
+
+The second of these is a Windows-style heirarchical ini; within it, sections matter. The first is a "flat" .ini like most in the MiSTer world.
+
+When in doubt, if a ROM has multiple versions, you probably want the original 1.0 release of the ROM, probably the US version though in some, usually noted cases, the JP version. It's usually a good idea for your paths to have single quotes around them. I made directories called "randoroms" to store my base roms, but you do NOT have to do that; it just made my life easier. Once this is done:
+
+Command Line Usage: randomizerlauncher.sh randomizername
+
+where "randomizername" is the short names of randomizers as below in this README. One can also add "autoload" to the end, so it looks like
+
+randomizerlauncher.sh sj autoload
+
+to generate and run a Solar Jetman rom.
+
+Without TapTo, you can also just open the script in the scripts menu, if you can view interactive scripts; it'll give you a list of randomizers, just select the one you want. The menu always is set to autoload ROMs; as a note, the menu ONLY works on a MiSTer; it will not properly function over SSH. I hope to fix that in a future release.
 
 In TapTo, make a card with **mister.script:randomizerlauncher.sh randomizername autoload (in the near future add ?hidden=true to the end of it to surpress the display output for truly smooth operation).
 
