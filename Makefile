@@ -31,10 +31,8 @@ taptorandomize:
 	cp -R vendor/randstalker/build/ build/TapToRandomize/randomizers/
 	mv build/TapToRandomize/randomizers/build build/TapToRandomize/randomizers/randstalker
 	cp -R vendor/shadowrun-randomizer build/TapToRandomize/randomizers/
-	cp -R vendor/zelda-randomizer build/TapToRandomize/randomizers/
-	cp -R vendor/zilliandomizer build/TapToRandomize/randomizers/
 	cp vendor/mbc/mbc build/TapToRandomize/randomizers/
-	cd build && zip -r TapToRandomize-0.2.1.zip TapToRandomize/
+	cd build && zip -r TapToRandomize-0.2.2.zip TapToRandomize/
 clean:
 	cd vendor/dq3hf && make clean
 	cd vendor/cotm-randomizer/Program && make clean
