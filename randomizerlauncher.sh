@@ -9,6 +9,8 @@ BaseGBADir=GBA
 BaseN64Dir=N64
 BaseGenesisDir=Genesis
 BaseSMSDir=SMS
+BasePSXDir=PSX
+BaseMSXDir=MSX
 TmpDir=$RandomizerBasedir/taptorandomizetmp
 ArchipelagoDir=$RandomizerBasedir/archipelago-0.5.0-MiSTerFPGA
 SolarJetmanRandoDir=SolarJetmanRando
@@ -80,6 +82,73 @@ COTMallBossesRequired=0
 COTMdssRunSpeed=1 
 COTMskipCutscenes=0 
 COTMskipMagicItemTutorials=0 
+COTMnerfRocWing=0
+ARRomPath='/media/fat/cifs/games/SNES/randoroms/ar.sfc'
+ARRandoDir=ARRando
+ARExtraLives=0
+ARUnlimitedLives=0
+ARDeathCount=1
+ARSwordUpgrade=0
+ARMarhana='N'
+ARBossRush='C'
+BOF3Abilities=1
+BOF3Characters=1
+BOF3Enemies=0
+BOF3DragonLoc=0
+BOF3Masters=0
+BOF3Items=1
+BOF3Shops=1
+BOF3Treasure=1
+BOF3RandoDir=BOF3Rando
+BOF3RomPath='/media/fat/cifs/games/PSX/randoroms/bof3.iso'
+FFL2Evolutions=1
+FFL3Formations=1
+FFL2Items=1
+FFL2MonsterSkills=1
+FFL2MonsterStats=1
+FFL2MutantSkills=1
+FFL2Shops=1
+FFL2Treasure=1
+FFL2RomPath='/media/fat/cifs/games/GAMEBOY/randoroms/ffl2.gb'
+FFL2RandoDir=FFL2Rando
+FFTAbilities=1
+FFTMusic=0
+FFTFormations=1
+FFTJobInnates=1
+FFTJobStats=1
+FFTShop=1
+FFTMaps=1
+FFTJobRequirements=1
+FTJobSkillsets=1
+FFTTrophies=1
+FFTUnits=1
+FFTWeapons=1
+FFTStatus=1
+FFTRomPath='/media/fat/cifs/games/PSX/randoroms/fft.iso'
+FFTRandoDir=FFTRando
+MGRomPath='/media/fat/cifs/games/NES/randoroms/mg.nes'
+MGRandoDir=MGRando
+MN64RomPath='/media/fat/cifs/games/N64/randoroms/mn64.z64'
+MN64RandoDir=MN64Rando
+LandstalkerRandoDir=LandstalkerRando
+LandstalkerRomPath='/media/fat/cifs/games/Genesis/randoroms/landstalker.md'
+LandstalkerPreset='default.json'
+ShadowrunRomPath='/media/fat/cifs/games/SNES/randoroms/sr.smc'
+ShadowrunRandoDir=ShadowrunRando
+ALTTPDRandoDir=ALTTPDoorRando
+ALTTPDRomPath='/media/fat/cifs/games/SNES/randoroms/alttp.smc'
+GSRandoDir=GSRando
+GSRomPath='/media/fat/cifs/games/GBA/randoroms/gs.gba'
+LADXRandoDir=LADXRando
+LADXRomPath='/media/fat/cifs/games/GAMEBOY/randoroms/ladx.gbc'
+MegaManWeapons=1
+MegaManPalette=1
+MegaManWeakness=1
+MegaManBossDamage=1
+MegaManMusic=0
+MegaManRoll=1
+MegaManRompath='/media/fat/cifs/games/NES/randoroms/mm.nes'
+MegaManRandoDir=MMRando
 SystemForAutolaunch=none
 KeepSeeds=5
 
@@ -114,16 +183,163 @@ archipelago_generate(){
         cp $TmpDir/AP*$ArchipelagoFileEnding $BaseRandoDir/current
         rm -Rf $TmpDir/*
 }
+actraiser_optionstring(){
+        aroptions=''
+        if (( ARExtraLives > 0 )); then
+                aroptions="-E $aroptions"
+        fi
+        if (( ARUnlimitedLives > 0 )); then
+                aroptions="-U $aroptions"
+        fi
+        if (( ARDeathCount > 0 )); then
+                aroptions="-D $aroptions"
+        fi
+        if (( ARSwordUpgrade > 0 )); then
+                aroptions="-Z $aroptions"
+        fi
+        case $ARMarhana in
+                L) aroptions="-L $aroptions" ;;
+                R) aroptions="-R $aroptions" ;;
+        esac
+        case $ARBossRush in
+                C) aroptions="-C $aroptions" ;;
+                S) aroptions="-S $aroptions" ;;
+        esac
+        seed=$RANDOM
+        aroptions="$aroptions -s $seed -o $BaseRandoDir/current/$seed.sfc $ARRomPath"
+        echo "$aroptions"
+}
+bof3vv_options(){
+        bof3vvoptions='-'
+        if (( BOF3Abilities > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}a"
+        fi
+        if (( BOF3Characters > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}c"
+        fi
+        if (( BOF3Enemies > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}e"
+        fi
+        if (( BOF3DragonLoc > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}g"
+        fi
+        if (( BOF3Masters > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}m"
+        fi
+        if (( BOF3Itemsc > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}q"
+        fi
+        if (( BOF3Shops > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}s"
+        fi
+        if (( BOF3Treasure > 0 )); then
+                bof3vvoptions="{$bof3vvoptions}t"
+        fi        
+        seed=$RANDOM
+        bof3vvoptions="$bof3vvoptions $BOF3RomPath $seed"
+        echo "$bof3vvoptions"
+}
+ffl2_options(){
+	    ffl2options='-'
+        if (( FFL2Evolutions > 0 )); then
+                ffl2options="{$ffl2options}e"
+        fi
+        if (( FFL2Formations > 0 )); then
+                ffl2options="{$ffl2options}f"
+        fi
+        if (( FFL2Items > 0 )); then
+                ffl2options="{$ffl2options}i"
+        fi
+        if (( FFL2MonsterSkills > 0 )); then
+                ffl2options="{$ffl2options}k"
+        fi
+        if (( FL2MonsterStats > 0 )); then
+                ffl2options="{$ffl2options}m"
+        fi
+        if (( FFL2MutantSkills > 0 )); then
+                ffl2options="{$ffl2options}u"
+        fi
+        if (( FFL2Shops > 0 )); then
+                ffl2options="{$ffl2options}s"
+        fi
+        if (( FFL2Treasure > 0 )); then
+                ffl2options="{$ffl2options}t"
+        fi        
+        seed=$RANDOM
+        ffl2options="$ffl2options $FFL2RomPath $seed"
+        echo "$ffl2options"
+}
+fft_options(){
+		fftoptions='-'
+        if (( FFTAbilities > 0 )); then
+                fftoptions="{$fftoptions}a"
+        fi
+        if (( FFTMusic > 0 )); then
+                fftoptions="{$fftoptions}c"
+        fi
+        if (( FFTFormations > 0 )); then
+                fftoptions="{$fftoptions}f"
+        fi
+        if (( FFTJobInnates > 0 )); then
+                fftoptions="{$fftoptions}i"
+        fi
+        if (( FFTJobStats > 0 )); then
+                fftoptions="{$fftoptions}j"
+        fi
+        if (( FFTShop > 0 )); then
+                fftoptions="{$fftoptions}p"
+        fi
+        if (( FFTMaps > 0 )); then
+                fftoptions="{$fftoptions}m"
+        fi
+        if (( FFTTrophies > 0 )); then
+                fftoptions="{$fftoptions}t"
+        fi
+        if (( FFTUnits > 0 )); then
+                fftoptions="{$fftoptions}u"
+        fi
+        if (( FFTWeapons > 0 )); then
+                fftoptions="{$fftoptions}w"
+        fi
+        if (( FFTStatus > 0 )); then
+                fftoptions="{$fftoptions}y"
+        fi        
+        seed=$RANDOM
+        fftoptions="$fftoptions $FFL2RomPath $seed"
+        echo "$fftoptions"
+}
 cotm_options(){
-        echo -e "ignoreCleansing $COTMignoreCleansing \napplyAutoRunPatch $COTMapplyAutoRunPatch " > "options.txt"
-        echo -e "applyNoDSSGlitchPatch $COTMapplyNoDSSGlitchPatch \napplyAllowSpeedDash $COTMapplyAllowSpeedDash " >> options.txt
-        echo -e "breakIronMaidens $COTMbreakIronMaidens \nlastKeyRequired $COTMlastKeyRequired " >> options.txt
-        echo -e "lastKeyAvailable $COTMlastKeyAvailable \napplyBuffFamiliars $COTMapplyBuffFamiliars " >> options.txt
-        echo -e "applyBuffSubweapons $COTMapplyBuffSubweapons \napplyShooterStrength $COTMapplyShooterStrength " >> options.txt
-        echo -e "doNotRandomizeItems $COTMdoNotRandomizeItems \nRandomItemHardMode $COTMRandomItemHardMode " >> options.txt
-        echo -e "halveDSSCards $COTMhalveDSSCards \ncountdown $COTMcountdown \nsubweaponShuffle $COTMsubweaponShuffle " >> options.txt
-        echo -e "noMPDrain $COTMnoMPDrain \nallBossesRequired $COTMallBossesRequired \ndssRunSpeed $COTMdssRunSpeed " >> options.txt
-        echo -n -e "skipCutscenes $COTMskipCutscenes \nskipMagicItemTutorials $COTMskipMagicItemTutorials " >> options.txt
+        echo -e "ignoreCleansing $COTMignoreCleansing #boolean\napplyAutoRunPatch $COTMapplyAutoRunPatch #boolean" > "options.txt"
+        echo -e "applyNoDSSGlitchPatch $COTMapplyNoDSSGlitchPatch #boolean\napplyAllowSpeedDash $COTMapplyAllowSpeedDash #boolean" >> options.txt
+        echo -e "breakIronMaidens $COTMbreakIronMaidens #boolean\nlastKeyRequired $COTMlastKeyRequired #int" >> options.txt
+        echo -e "lastKeyAvailable $COTMlastKeyAvailable #int\napplyBuffFamiliars $COTMapplyBuffFamiliars #boolean" >> options.txt
+        echo -e "applyBuffSubweapons $COTMapplyBuffSubweapons #boolean\napplyShooterStrength $COTMapplyShooterStrength #boolean" >> options.txt
+        echo -e "doNotRandomizeItems $COTMdoNotRandomizeItems #boolean\nRandomItemHardMode $COTMRandomItemHardMode #boolean" >> options.txt
+        echo -e "halveDSSCards $COTMhalveDSSCards #boolean\ncountdown $COTMcountdown #boolean\nsubweaponShuffle $COTMsubweaponShuffle #boolean" >> options.txt
+        echo -e "noMPDrain $COTMnoMPDrain #boolean\nallBossesRequired $COTMallBossesRequired #boolean\ndssRunSpeed $COTMdssRunSpeed #boolean" >> options.txt
+        echo -n -e "skipCutscenes $COTMskipCutscenes #boolean\nskipMagicItemTutorials $COTMskipMagicItemTutorials #boolean\nnerfRocWing $COTMnerfRocWing #boolean" >> options.txt
+}
+megaman_options(){
+	    mmoptions = ""
+	    if (( MegaManWeapons == 0 )); then
+			    mmoptions = "-w $mmoptions"
+		fi
+	    if (( MegaManPalette == 0 )); then
+			    mmoptions = "-p $mmoptions"
+		fi
+	    if (( MegaManWeakness > 0 )); then
+			    mmoptions = "+weakness $mmoptions"
+		fi
+	    if (( MegaManBossDamage > 0 )); then
+			    mmoptions = "+damagetoboss $mmoptions"
+		fi
+	    if (( MegaManMusic > 0 )); then
+			    mmoptions = "+music $mmoptions"
+		fi
+	    if (( MegaManRoll > 0 )); then
+			    mmoptions = "+roll $mmoptions"
+		fi
+		mmoptions = "$mmoptions -i $MegaManRomPath -o $BaseRandoDir/current/"	
 }
 build_options_flags_sj(){
         SJOptionsString=""
@@ -152,21 +368,151 @@ build_options_flags_sj(){
         fi
         echo "$SJOptionsString"
 }
+setupPythonEnv(){
+        python -m ensurepip
+        if [ ! -e .venv$EnvIdentifier/bin/activate ]; then
+            python -m venv .venv$EnvIdentifier
+        fi
+        . .venv$EnvIdentifier/bin/activate
+}
+ar(){
+        BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ARRandoDir
+        shift_old_seeds
+        EnvIdentifier="ar"
+        cd randomizers/actraiser-randomizer/
+        setupPythonEnv
+        actraiser_optionstring
+        python actraiser_randomizer.py $aroptions
+        cd ../../
+        deactivate
+        SystemForAutoLaunch=SNES
+}
+bof3vv(){
+        BaseRandoDir=$BaseGameDir/$BasePSXDir/$BOF3RandoDir
+        shift_old_seeds
+        EnvIdentifier="bof3"
+        cd randomizers/bof3_vast_violence
+        setupPythonEnv
+        bof3vv_options
+        python randomizer.py $bof3vvoptions
+        mv *.iso $BaseRandoDir/current/
+        cd ../../
+        deactivate
+        SystemForAutoLaunch=PSX
+}
+ffl2(){
+        BaseRandoDir=$BaseGameDir/$BaseGameboyDir/$FFL2RandoDir
+        shift_old_seeds
+        EnvIdentifier="ffl2"
+        cd randomizers/ffl2mp
+        setupPythonEnv
+        ffl2_options
+        python randomizer.py $ffl2options
+        mv *.gb $BaseRandoDir/current/
+        cd ../../
+        deactivate
+        SystemForAutoLaunch=GAMEBOY
+}
+fft(){
+        BaseRandoDir=$BaseGameDir/$BasePSXDir/$FFTRandoDir
+        shift_old_seeds
+        EnvIdentifier="fft"
+        cd randomizers/fftrctcr
+        setupPythonEnv
+        fft_options
+        python randomizer.py $fftoptions
+        mv *.iso $BaseRandoDir/current/
+        cd ../../
+        deactivate
+        SystemForAutoLaunch=PSX
+}
+mg(){
+	    BaseRandoDir=$BaseGameDir/$BaseMSXDir/$MGRandoDir
+	    shift_old_seeds
+	    EnvIdentifier="mg"
+	    cd randomizers/mg-random/
+	    cp $MGRomPath ./
+	    python server2.py
+	    cp random.rom $BaseRandoDir/current/$RANDOM.rom
+	    rm *.rom
+	    cd ../../
+	    SystemForAutoLaunch=MSX
+	    
+}
+mn64(){
+		BaseRandoDir=$BaseGameDir/$BaseN64Dir/$MN64RandoDir
+	    shift_old_seeds
+	    cd randomizers/mn64rando/
+	    export MN64_CONFIG=/media/fat/Scripts/mn64settings.yaml
+	    python randomizer.py $MN64RomPath
+	    mv *.z64 $BaseRandoDir/current
+	    cd ../../
+	    SystemForAutoLaunch=N64
+}
+landstalker(){
+		BaseRandoDir=$BaseGameDir/$BaseGenesisDir/$LandstalkerRandoDir
+	    shift_old_seeds
+	    cd randomizers/randstalker/
+	    ./randstalker --inputRom=$LandstalkerRomPath --outputRom=$BaseRandoDir/current --noPause --ingametracker --preset=presets/$LandstalkerPreset
+	    cd ../../
+	    SystemForAutoLaunch=Genesis
+}
+sr(){
+	    BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ShadowrunRandoDir
+	    shift_old_seeds
+	    cd randomizers/shadowrun-randomizer
+	    seed=$RANDOM
+	    python shadowrun_randomizer.py -s $seed -o "$BaseRandoDir/current/$seed.sfc" "$ShadowrunRomPath"
+	    cd ../../
+	    SystemForAutoLaunch=SNES
+}
+alttp-door(){
+	    BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ALTTPDRandoDir
+	    shift_old_seeds
+	    cd randomizers/ALttPDoorRandomizer
+	    EnvIdentifier="alttpd"
+	    setupPythonEnv
+	    python -m pip install aenum fast-enum python-bps-continued aioconsole websockets colorama pyyaml --cache-dir=/media/fat/Scripts/randomizers/taptorandomizetmp/
+	    python DungeonRandomizer.py --rom "$ALTTPDRomPath" --shuffle full --outputpath $BaseRandoDir/current --suppress_spoiler
+	    deactivate
+	    cd ../../
+	    SystemForAutoLaunch=SNES
+}
+gs(){
+	    BaseRandoDir=$BaseGameDir/$BaseGBADir/$GSRandoDir
+	    shift_old_seeds
+	    cd randomizers/GS-Randomizer
+	    EnvIdentifier="gs"
+	    setupPythonEnv
+	    python -m pip install hjson
+	    cp $GSRomPath ./GOLDEN_SUN_A_AGSE00.gba
+	    python randomizer.py /media/fat/Scripts/randomizers/jsons/GoldenSun.json
+	    rm GOLDEN_SUN_A_AGSE00.gba
+	    cp *.gba $BaseRandoDir/current/
+	    cd ../../
+	    SystemForAutoLaunch=GBA
+}
+ladx(){
+	    BaseRandoDir=$BaseGameDir/$BaseGameboyDir/$LADXRandoDir
+	    shift_old_seeds
+	    cd randomizers/LADXR
+	    python main.py --spoilerformat none $LADXRomPath
+	    mv *.gbc $BaseRandoDir/current
+	    SystemForAutoLaunch="GAMEBOY" 
+}
 solarjetman(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$SolarJetmanRandoDir
         shift_old_seeds
-        if [ ! -e .venvsj/bin/activate ]; then
-            python -m venv .venvsj
-        fi
-        source .venvsj/bin/activate
-        pip install sj-rando
+        EnvIdentifier="sj"
+        setupPythonEnv
+        python -m pip install sj-rando
         build_options_flags_sj
         sj-rando $SJOptionsString --rompath "${SolarJetmanRom}"
         deactivate
         mv *.nes "$BaseRandoDir/current"
         SystemForAutolaunch="NES"
 }
-alttp(){
+alttp-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$ALTTPRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$ALTTPPlayerDir
@@ -174,7 +520,7 @@ alttp(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-dkc3(){
+dkc3-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$DKC3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$DKC3PlayerDir
@@ -182,7 +528,7 @@ dkc3(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-cv64(){
+cv64-a(){
         BaseRandoDir=$BaseGameDir/$BaseN64Dir/$CV64RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$CV64PlayerDir
@@ -190,7 +536,7 @@ cv64(){
         archipelago_generate 
         SystemForAutolaunch="N64"
 }
-kdl3(){
+kdl3-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$KDL3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$KDL3PlayerDir
@@ -198,7 +544,7 @@ kdl3(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-loz(){
+loz-a(){
         BaseRandoDir=$BaseGameDir/$BaseNesDir/$LOZRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$LOZPlayerDir
@@ -206,7 +552,7 @@ loz(){
         archipelago_generate 
         SystemForAutolaunch="NES"
 }
-l2(){
+l2-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$L2RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$L2PlayerDir
@@ -214,7 +560,7 @@ l2(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-mmbn3(){
+mmbn3-a(){
         BaseRandoDir=$BaseGameDir/$BaseGBADir/$MMBN3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$MMBN3PlayerDir
@@ -222,7 +568,7 @@ mmbn3(){
         archipelago_generate 
         SystemForAutolaunch="GBA"
 }
-oot(){
+oot-a(){
         BaseRandoDir=$BaseGameDir/$BaseN64Dir/$OOTRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$OOTPlayerDir
@@ -230,7 +576,7 @@ oot(){
         archipelago_generate
         SystemForAutolaunch="N64"
 }
-pokee(){
+pokee-a(){
         BaseRandoDir=$BaseGameDir/$BaseGBADir/$PokeERandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$PokeEPlayerDir
@@ -238,7 +584,7 @@ pokee(){
         archipelago_generate 
         SystemForAutolaunch="GBA"
 }
-pokerb(){
+pokerb-a(){
         BaseRandoDir=$BaseGameDir/$BaseGameboyDir/$PokeRBRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$PokeRBPlayerDir
@@ -246,7 +592,7 @@ pokerb(){
         archipelago_generate 
         SystemForAutolaunch="GAMEBOY"
 }
-smw(){
+smw-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMWRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMWPlayerDir
@@ -254,7 +600,7 @@ smw(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-smz3(){
+smz3-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMZ3RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMZ3PlayerDir
@@ -262,7 +608,7 @@ smz3(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-soe(){
+soe-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SOERandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SOEPlayerDir
@@ -270,7 +616,7 @@ soe(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-sm(){
+sm-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMPlayerDir
@@ -278,7 +624,7 @@ sm(){
         archipelago_generate 
          SystemForAutolaunch="SNES"
 }
-yoshi(){
+yoshi-a(){
         BaseRandoDir=$BaseGameDir/$BaseSnesDir/$SMW2RandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$SMW2PlayerDir
@@ -286,7 +632,7 @@ yoshi(){
         archipelago_generate 
         SystemForAutolaunch="SNES"
 }
-yugioh06(){
+yugioh06-a(){
         BaseRandoDir=$BaseGameDir/$BaseGBADir/$YGORandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$YGOPlayerDir
@@ -294,7 +640,7 @@ yugioh06(){
         archipelago_generate 
         SystemForAutolaunch="GBA"
 }
-zillion(){
+zillion-a(){
         BaseRandoDir=$BaseGameDir/$BaseSMSDir/$ZillionRandoDir
         shift_old_seeds
         ArchipelagoPlayerDir=$BaseYamlDir/$ZillionPlayerDir
@@ -333,49 +679,68 @@ cotm(){
 call_menu(){
 
         items=(solarjetman "Solar Jetman NES (akerasi)"
-               alttp "A Link to the Past SNES (Archipelago)"
-               dkc3 "Donkey Kong Country 3 SNES (Archipelago)"
-               cv64 "Castlevania 64 (Archipelago)"
-               kdl3 "Kirby's Dream Land 3 (Archipelago)"
-               loz "The Legend of Zelda NES (Archipelago)"
-               l2 "Lufia 2 Ancient Caves SNES (Archipelago)"
-               mmbn3 "Mega Man Battle Network 3 GBA (Archipelago)"
-               pokerb "Pokemon Red/Blue GB (Archipelago)"
-               sm "Super Metroid SNES (Archipelago)"
-               smw "Super Mario World SNES (Archipelago)"
-               soe "Secret of Evermore SNES (Archipelago)"
-               smz3 "Super Metroid/A Link to the Past Combo SNES (Archipelago)"
-               yoshi "Yoshi's Island SNES (Archipelago)"
-               yugioh06 "YuGiOh Ultimate Masters 2006 GBA (Archipelago)"
-               zillion "Zillion SMS (Archipelago)"
+               alttp-a "A Link to the Past SNES (Archipelago)"
+               dkc3-a "Donkey Kong Country 3 SNES (Archipelago)"
+               cv64-a "Castlevania 64 (Archipelago)"
+               kdl3-a "Kirby's Dream Land 3 (Archipelago)"
+               loz-a "The Legend of Zelda NES (Archipelago)"
+               l2-a "Lufia 2 Ancient Caves SNES (Archipelago)"
+               mmbn3-a "Mega Man Battle Network 3 GBA (Archipelago)"
+               pokerb-a "Pokemon Red/Blue GB (Archipelago)"
+               sm-a "Super Metroid SNES (Archipelago)"
+               smw-a "Super Mario World SNES (Archipelago)"
+               soe-a "Secret of Evermore SNES (Archipelago)"
+               smz3-a "Super Metroid/A Link to the Past Combo SNES (Archipelago)"
+               yoshi-a "Yoshi's Island SNES (Archipelago)"
+               yugioh06-a "YuGiOh Ultimate Masters 2006 GBA (Archipelago)"
+               zillion-a "Zillion SMS (Archipelago)"
                dq3 "Dragon's Quest 3 Super Famicom (cleartonic)"
-               cotm "Circle of the Moon (calm-palm)")
+               cotm "Circle of the Moon (calm-palm)"
+               ar "Actraiser Randomizer (Osteoclave)"
+               bof3vv "Breath of Fire 3 PSX (Abyssonym)"
+               ffl2 "Final Fantasy Legend 2 GB (Abyssonym)"
+               fft "Final Fantasy Tactics PSX (Abyssonym)"
+               mg "Metal Gear MSX (Wijnen)"
+               landstalker "Landstalker Genesis (Dinopony)"
+               sr "Shadowrun SNES (Osteoclave)"
+               alttp-door "A Link To The Past Door Randomizer SNES (aerinon)"
+               ladx "Link's Awakening DX (daid)")
 
         choice=$(dialog --title "TapToRandomize Launcher" \
                          --menu "Select a randomizer to launch" 50 90 999 "${items[@]}" \
                          2>&1 >/dev/tty2)
         case $choice in
                 solarjetman) solarjetman ;; 
-                alttp) alttp ;; 
-                dkc3) dkc3 ;;
-                cv64) cv64 ;;
-                kdl3) kdl3 ;;
-                loz) loz ;;     
-                l2) l2 ;;
-                mmbn3) mmbn3 ;;
+                alttp-a) alttp-a ;; 
+                dkc3-a) dkc3-a ;;
+                cv64-a) cv64-a ;;
+                kdl3-a) kdl3-a ;;
+                loz-a) loz-a ;;     
+                l2-a) l2-a ;;
+                mmbn3-a) mmbn3-a ;;
 #        Commented out as it doesn't currently run on MiSTer; left for future fix
-#                oot) oot ;;
-#                pokee) pokee ;;
-                pokerb) pokerb ;;    
-                smw) smw ;;
-                smz3) smz3 ;;
-                soe) soe ;;
-                sm) sm ;;
-                yoshi) yoshi ;;  
-                yugioh06) yugioh06 ;;
-                zillion) zillion ;;
+#                oot-a) oot-a ;;
+#                pokee-a) pokee-a ;;
+                pokerb-a) pokerb-a ;;    
+                smw-a) smw-a ;;
+                smz3-a) smz3-a ;;
+                soe-a) soe-a ;;
+                sm-a) sm-a ;;
+                yoshi-a) yoshi-a ;;  
+                yugioh06-a) yugioh06-a ;;
+                zillion-a) zillion-a ;;
                 dq3) dq3 ;;
                 cotm) cotm ;;
+                ar) ar ;;
+                bof3vv) bof3vv ;;
+                ffl2) ffl2 ;;
+                fft) fft ;;
+                mg) mg ;;
+                landstalker) landstalker ;;
+                sr) sr ;;
+                alttp-door) alttp-door ;;
+                ladx) ladx ;;
+#                gs) gs ;;
                 *) clear
                 exit 0 ;;
         esac
@@ -385,26 +750,39 @@ call_menu(){
 }
 case $1 in
         solarjetman) solarjetman ;;
-        alttp) alttp ;;
-        dkc3) dkc3 ;;
-        cv64) cv64 ;;
-        kdl3) kdl3 ;;
-        loz) loz ;;
-        l2) l2 ;;
-        mmbn3) mmbn3 ;;
+        alttp-a) alttp-a ;;
+        dkc3-a) dkc3-a ;;
+        cv64-a) cv64-a ;;
+        kdl3-a) kdl3-a ;;
+        loz-a) loz-a ;;
+        l2-a) l2-a ;;
+        mmbn3-a) mmbn3-a ;;
 #        Commented out as it doesn't currently run on MiSTer; left for future fix
-#        oot) oot ;;
-#        pokee) pokee ;;
-        pokerb) pokerb ;;    
-        smw) smw ;;
-        smz3) smz3 ;;
-        soe) soe ;;
-        sm) sm ;;
-        yoshi) yoshi ;;  
-        yugioh06) yugioh06 ;;
-        zillion) zillion ;;
+#        oot-a) oot-a ;;
+#        pokee-a) pokee-a ;;
+        pokerb-a) pokerb-a ;;    
+        smw-a) smw-a ;;
+        smz3-a) smz3-a ;;
+        soe-a) soe-a ;;
+        sm-a) sm-a ;;
+        yoshi-a) yoshi-a ;;  
+        yugioh06-a) yugioh06-a ;;
+        zillion-a) zillion-a ;;
         dq3) dq3 ;;
         cotm) cotm ;;
+        ar) ar ;;
+        bof3vv) bof3vv ;;
+        ffl2) ffl2 ;;
+        fft) fft ;;
+        mg) mg ;;
+#commented out because, although it technically works, it takes a LITERAL hour.
+#        mn64) mn64 ;;
+        landstalker) landstalker ;;
+        sr) sr ;;
+        alttp-door) alttp-door ;;
+#commented out because underlying randomizer doesn't function on default seed; may fix it for them.'
+#        gs) gs ;;
+        ladx) ladx ;;
         *) call_menu ;;
         #No valid argument entered, start up the menu if we can
 esac

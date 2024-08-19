@@ -1,6 +1,10 @@
+![TapToRandomize](assets/TapToRandomize.png?raw=true "TapToRandomize")
+
 TapToRandomize is a simple script to automize randomizer usage on MiSTerFPGA, best utilized alongside TapTo (https://github.com/TapToCommunity/tapto)
 
 Build instructions are under Build.md, but if you're not a developer, you're better off just downloading the release.
+
+YOU WILL NEED TO EDIT THE INI FILES FOR ANYTHING TO WORK.
 
 Usage: randomizerlauncher.sh randomizername
 
@@ -14,7 +18,7 @@ RandoDir for each randomizer is defined in the script or in a .ini file. It's se
 
 A default ini file is included. You'll almost certainly need to edit it.
 
-Each Archipelago-based randomizer (all of them but Solar Jetman right now) uses a yaml file, located in yamls, for some of its configs. There is a rewriter for these files, at randomizerlauncheryamls.ini, which is a Windows-style ini file rather than a flat Unix one. Sections do matter when editing it. What's in the .ini file will overwrite whatever is in the yamls.You will almost certainly need to edit the rom_path entries in the ini file. I don't recommend editing the .yaml files directly as the .ini will overwrite them, but if you want to, comment out the sections in the ini. Also don't forget to edit host.yaml if you're doing this; the .ini file takes care of that quietly for you, currently.
+Each Archipelago-based randomizer (these have an appended -a at the end of their short names) uses a yaml file, located in yamls, for some of its configs. There is a rewriter for these files, at randomizerlauncheryamls.ini, which is a Windows-style ini file rather than a flat Unix one. Sections do matter when editing it. What's in the .ini file will overwrite whatever is in the yamls.You will almost certainly need to edit the rom_path entries in the ini file. I don't recommend editing the .yaml files directly as the .ini will overwrite them, but if you want to, comment out the sections in the ini. Also don't forget to edit host.yaml if you're doing this; the .ini file takes care of that quietly for you, currently.
 
 Weird config note: for Zillion specifically, your ROM MUST be named as Zillion (UE) [!].sms . It can live in any directory, but the filename MUST match that exactly. This is inherited from Archipelago, which inherited it from zilliandomizer, so nothing I can do to change it unless I want to fix it in zilliandomizer, and that's likely beyond my scope... for now. No other randomizers currently have a restriction like this.
 
@@ -28,33 +32,33 @@ solarjetman (NES Solar Jetman)
 
 (from Archipelago https://github.com/ArchipelagoMW/Archipelago)
 
-alttp (SNES A Link To The Past)
+alttp-a (SNES A Link To The Past)
 
-dkc3 (SNES Donkey Kong Country 3)
+dkc3-a (SNES Donkey Kong Country 3)
 
-cv64 (N64 Castlevania64)
+cv64-a (N64 Castlevania64)
 
-kdl3 (SNES Kirby's Dream Land 3)
+kdl3-a (SNES Kirby's Dream Land 3)
 
-loz (NES The Legend of Zelda)
+loz-a (NES The Legend of Zelda)
 
-l2 (SNES Lufia 2 Ancient Caves)
+l2-a (SNES Lufia 2 Ancient Caves)
 
-mmbn3 (GBA Mega Man Battle Network 3)
+mmbn3-a (GBA Mega Man Battle Network 3)
 
-pokerb (GB Pokemon Red and Blue)
+pokerb-a (GB Pokemon Red and Blue)
 
-smz3 (SNES Super Metroid and A Link to the Past Combo Randomizer)
+smz3-a (SNES Super Metroid and A Link to the Past Combo Randomizer)
 
-soe (SNES Secret of Evermore)
+soe-a (SNES Secret of Evermore)
 
-sm (SNES Super Metroid)
+sm-a (SNES Super Metroid)
 
-yoshi (SNES Yoshi's Island)
+yoshi-a (SNES Yoshi's Island)
 
-yugioh06 (GBA Yu Gi Oh Ultimate Master 2006)
+yugioh06-a (GBA Yu Gi Oh Ultimate Master 2006)
 
-zillion (SMS Zillion)
+zillion-a (SMS Zillion)
 
 ( From cleartonic: https://github.com/cleartonic/dq3hf )
 
@@ -64,10 +68,40 @@ dq3 (SNES Dragon Quest 3 Heavenly Flight (works with English patch or JP rom))
 
 cotm (GBA Castlevania Circle of the Moon)
 
-Version: 0.2.1
+( From Osteoclave https://github.com/Osteoclave/actraiser-randomizer )
+
+ar (SNES Actraiser)
+
+sr (SNES Shadowrun)
+
+(from Abyssonym)
+
+bof3vv (PSX Breath of Fire 3 (Vast Violence))
+
+ffl2 (GBA Final Fantasy Legend 2 (Mighty Power))
+
+fft (PSX Final Fantasy Tactics)
+
+(from wijnen)
+
+mg (MSX Metal Gear)
+
+(from Dinopony)
+
+landstalker (Genesis Landstalker)
+
+(from aerinon)
+
+alttp-door (SNES A Link To The Past Door Randomizer) (BETA, does not allow option changing easily)
+
+ladx (GBC Link's Awakening DX) (BETA does not allow option changing easily)
+
+Version: 0.2.2
 Author: akerasi (Allen Tipper)
 
 CHANGELOG:
+0.2.2: The Great Archipelago Rename, and added many new randomizers that were easy to integrate. Also bugfixes.
+
 0.2.1: Refactored such that a proper build system is in place for everything, and added a proper build system. Also cut out more of Archipelago that we don't need, so builds are much smaller.
 
 0.1.6: Added Circle of the Moon https://github.com/calm-palm/cotm-randomizer/
@@ -83,6 +117,8 @@ CHANGELOG:
 0.1.1: Initial release.
 
 ACKNOWLEDGEMENTS
+
+AnimeOt4ku for our logo, and quite possibly official templates for TapTo cards in the future.
 
 The Archipelago project, https://github.com/ArchipelagoMW/Archipelago , from which we take many randomizers.
 
