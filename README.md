@@ -94,6 +94,8 @@ landstalker (Genesis Landstalker)
 
 alttp-door (SNES A Link To The Past Door Randomizer) (BETA, does not allow option changing easily)
 
+(from daid)
+
 ladx (GBC Link's Awakening DX) (BETA does not allow option changing easily)
 
 Version: 0.2.2
