@@ -30,7 +30,7 @@ randomizerlauncher.sh sj autoload
 
 to generate and run a Solar Jetman rom.
 
-Without TapTo, you can also just open the script in the scripts menu, if you can view interactive scripts; it'll give you a list of randomizers, just select the one you want. The menu always is set to autoload ROMs; as a note, the menu ONLY works on a MiSTer; it will not properly function over SSH. I hope to fix that in a future release.
+Without TapTo, you can also just open the script in the scripts menu, if you can view interactive scripts; it'll give you a list of randomizers, just select the one you want. The menu always is set to autoload ROMs; as a note, the menu ONLY works on a MiSTer, via HDMI; it will not properly function over SSH. I hope to fix that in a future release.
 
 In TapTo, make a card with **mister.script:randomizerlauncher.sh randomizername autoload (in the near future add ?hidden=true to the end of it to surpress the display output for truly smooth operation).
 
