@@ -158,7 +158,7 @@ BOF3RomPath='/media/fat/cifs/games/PSX/randoroms/bof3.iso'
 
 #Final Fantasy Legend 2 options
 FFL2Evolutions=1
-FFL3Formations=1
+FFL2Formations=1
 FFL2Items=1
 FFL2MonsterSkills=1
 FFL2MonsterStats=1
