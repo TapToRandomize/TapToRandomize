@@ -7,18 +7,14 @@ YOU WILL NEED TO EDIT THE INI FILES FOR ANYTHING TO WORK.
 Installation:
 
 Unzip the release zip into /media/fat/Scripts
+Alternately, on your MiSTer, add these lines to your downloader.ini on your SD card:
 
-Once it's there, you're going to need to dive into the very large Config files; I plan on making a menu for them as my next major release, but that isn't done at the moment. The main thing you will NEED to alter are any line with "rompath" or "RomPath" in the name. These lines point at your ROMs. Also, if you don't currently use cifs, which the defaults point at, you'll need to change BaseGameDir in the main .ini file. The two config files are:
+[<TapToRandomize/TapToRandomizeDist>]
+db_url = https://raw.githubusercontent.com/<TapToRandomize/TapToRandomizeDist/db/db.json.zip
 
-randomizerlauncher.ini
+and run update_all
 
-and
-
-randomizerlauncheryaml.ini
-
-The second of these is a Windows-style heirarchical ini; within it, sections matter. The first is a "flat" .ini like most in the MiSTer world.
-
-When in doubt, if a ROM has multiple versions, you probably want the original 1.0 release of the ROM, probably the US version though in some, usually noted cases, the JP version. It's usually a good idea for your paths to have single quotes around them. I made directories called "randoroms" to store my base roms, but you do NOT have to do that; it just made my life easier. Once this is done:
+Once it's there, all you need to do is try to run a randomizer. First run will take a LOOONG time, like 20 minutes, finding your ROMs and building your initial .ini files; subsequent runs will be able to skip this step, and run much faster.
 
 Command Line Usage: randomizerlauncher.sh randomizername
 
@@ -34,15 +30,15 @@ In TapTo, make a card with **mister.script:randomizerlauncher.sh randomizername 
 
 Upon tapping that card, after a wait (note some waits can be sizeable, SMZ3 can take up to 4 minutes to launch! If you uncomment and try mn64, it took OVER AN HOUR to generate a rom, which is why I just commented it out; it "functions" if you do uncomment it) your randomized ROM will start up. You get a freshly randomized ROM any time you tap the card; to save a session for later, open the ROM in the RandoDir/current directory via the normal MiSTerFPGA menus, or make a card with a launch command targeting your RandoDir/current directory (I suggest having this card premade if you're in the habit of playing a single seed over multiple sessions).
 
-RandoDir for each randomizer is defined in the script or in a .ini file. It's set to sane defaults (at least for people who use a cifs drive like me; if your stuff is on an SD card, remove the cifs from all the configs)
+RandoDir for each randomizer is defined in the script or in a .ini file. The config builder tries to find ROMs automatically; if you have the right ROM, it should find it and add it to the config. When in doubt, you probably want a 1.0 rom if there are multiple versions, and some randomizers want a JP rom, but most want a US one. Look up the original randomizers for more info.
 
-A default ini file is included. You'll almost certainly need to edit it.
+A default ini file is included as an example, in case you want to look; it's the actual ini file I used before I made the autobuilder.
 
 Each Archipelago-based randomizer (these have an appended -a at the end of their short names) uses a yaml file, located in yamls, for some of its configs. There is a rewriter for these files, with a config file at randomizerlauncheryamls.ini, which is a Windows-style ini file rather than a flat Unix one. Sections do matter when editing it. What's in the .ini file will overwrite whatever is in the yamls.You will almost certainly need to edit the rom_path entries in the ini file. I don't recommend editing the .yaml files directly as the .ini will overwrite them, but if you want to, comment out the sections in the ini. Also don't forget to edit host.yaml if you're doing this; the .ini file takes care of that quietly for you, currently.
 
 Weird config note: for Zillion specifically, your ROM MUST be named as Zillion (UE) [!].sms . It can live in any directory, but the filename MUST match that exactly. This is inherited from Archipelago, which inherited it from zilliandomizer, so nothing I can do to change it unless I want to fix it in zilliandomizer, and that's likely beyond my scope... for now. No other randomizers currently have a restriction like this.
 
-This is EARLY Alpha at this point; it should progress as things go.
+This is EARLY Beta at this point; it should progress as things go.
 
 Supported randomizers currently:
 
@@ -118,10 +114,12 @@ alttp-door (SNES A Link To The Past Door Randomizer) (BETA, does not allow optio
 
 ladx (GBC Link's Awakening DX) (BETA does not allow option changing easily)
 
-Version: 0.2.2
+Version: 0.3.0
 Author: akerasi (Allen Tipper)
 
 CHANGELOG:
+0.3.0: requirement removed: CS Degree. Now automatically builds your ini, detecting and finding ROMs you have, on first run. Takes a long time, but makes things Just Work. Also packaged for normal MiSTer updater scripts to download, and fixed a few bugs (used to have filepaths that'd make it not work, now tolerant of any filenames/paths).
+
 0.2.2: The Great Archipelago Rename, and added many new randomizers that were easy to integrate. Also bugfixes.
 
 0.2.1: Refactored such that a proper build system is in place for everything, and added a proper build system. Also cut out more of Archipelago that we don't need, so builds are much smaller.
