@@ -10,6 +10,7 @@ Unzip the release zip into /media/fat/Scripts
 Alternately, on your MiSTer, add these lines to your downloader.ini on your SD card:
 
 [<TapToRandomize/TapToRandomizeDist>]
+
 db_url = https://raw.githubusercontent.com/<TapToRandomize/TapToRandomizeDist/db/db.json.zip
 
 and run update_all
