@@ -1,19 +1,18 @@
 TapToRandomize is a simple script to automate randomizer usage on MiSTerFPGA, best utilized alongside TapTo (https://github.com/TapToCommunity/tapto)
 
-Build instructions are under Build.md, but if you're not a developer, you're better off just downloading the release.
-
-YOU WILL NEED TO EDIT THE INI FILES FOR ANYTHING TO WORK.
+Build instructions are under Build.md, but if you're not a developer, you're better off just downloading the release, either directly or using update_all
 
 Installation:
 
 Unzip the release zip into /media/fat/Scripts
 Alternately, on your MiSTer, add these lines to your downloader.ini on your SD card:
 
-[TapToRandomize/TapToRandomizeDist]
 
+[TapToRandomize/TapToRandomizeDist]<br>
 db_url = https://raw.githubusercontent.com/TapToRandomize/TapToRandomizeDist/db/db.json.zip
 
-and run update_all
+
+and run `update_all`
 
 Once it's there, all you need to do is try to run a randomizer. First run will take a LOOONG time, like 20 minutes, finding your ROMs and building your initial .ini files; subsequent runs will be able to skip this step, and run much faster.
 
@@ -21,7 +20,7 @@ Command Line Usage: randomizerlauncher.sh randomizername
 
 where "randomizername" is the short names of randomizers as below in this README. One can also add "autoload" to the end, so it looks like
 
-randomizerlauncher.sh sj autoload
+`randomizerlauncher.sh solarjetman autoload`
 
 to generate and run a Solar Jetman rom.
 
