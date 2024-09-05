@@ -27,14 +27,19 @@ shift_old_seeds(){
 }
 archipelago_generate(){
         python $RandomizerBasedir/yamlupdater.py
-        mkdir -p $TmpDir
-        rm -Rf $TmpDir/*
-        cp $BaseYamlDir/host.yaml $ArchipelagoDir/
-        $ArchipelagoDir/ArchipelagoGenerate --player_files_path $ArchipelagoPlayerDir
-        unzip $TmpDir/*.zip -d $TmpDir/
-        $ArchipelagoDir/ArchipelagoPatch $TmpDir/AP_*P1*.ap*
-        cp $TmpDir/AP*$ArchipelagoFileEnding $BaseRandoDir/current
-        rm -Rf $TmpDir/*
+        if [[ -z ${TmpDir} ]]; then
+                echo "TmpDir variable does not exist; if TmpDir is not set, this cannot run."
+                return 1
+        else
+                mkdir -p $TmpDir
+                rm -f $TmpDir/*
+                cp $BaseYamlDir/host.yaml $ArchipelagoDir/
+                $ArchipelagoDir/ArchipelagoGenerate --player_files_path $ArchipelagoPlayerDir
+                unzip $TmpDir/*.zip -d $TmpDir/
+                $ArchipelagoDir/ArchipelagoPatch $TmpDir/AP_*P1*.ap*
+                cp $TmpDir/AP*$ArchipelagoFileEnding $BaseRandoDir/current
+                rm -f $TmpDir/*
+        fi
 }
 actraiser_optionstring(){
         aroptions=''
@@ -59,7 +64,7 @@ actraiser_optionstring(){
                 S) aroptions="-S $aroptions" ;;
         esac
         seed=$RANDOM
-        aroptions="$aroptions -s $seed -o $BaseRandoDir/current/$seed.sfc $ARRomPath"
+        aroptions="$aroptions -s $seed -o $BaseRandoDir/current/$seed.sfc ar.sfc"
         echo "$aroptions"
 }
 bof3vv_options(){
@@ -235,7 +240,11 @@ ar(){
         cd randomizers/actraiser-randomizer/
         setupPythonEnv
         actraiser_optionstring
+        cp "$ARRomPath" ./
+        ARRomPathFinal="${ARRomPath##*/}"
+        mv "$ARRomPathFinal" ar.sfc
         python actraiser_randomizer.py $aroptions
+        rm ar.sfc
         cd ../../
         deactivate
         SystemForAutoLaunch=SNES
