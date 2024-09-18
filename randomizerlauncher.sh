@@ -23,10 +23,13 @@ shift_old_seeds(){
                 cd $BaseRandoDir/archive
                 ls -1tr | head -n -$KeepSeeds | xargs -d '\n' rm -f --
                 cd /media/fat/Scripts
-        fi;
+        fi
 }
 archipelago_generate(){
-        python $RandomizerBasedir/yamlupdater.py
+        EnvIdentifier='ap'
+	setupPythonEnv
+	python -m pip install pyyaml
+	python $RandomizerBasedir/yamlupdater.py
         if [[ -z ${TmpDir} ]]; then
                 echo "TmpDir variable does not exist; if TmpDir is not set, this cannot run."
                 return 1
